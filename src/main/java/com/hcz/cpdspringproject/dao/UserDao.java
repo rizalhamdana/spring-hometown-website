@@ -17,7 +17,11 @@ public class UserDao {
     public User authentication(String username, String password) {
         User user = null;
         String sql = "select * from user where username = ? and password = ?";
-        user = template.queryForObject(sql, new UserMapper(), username, password);
+        List<User> users = template.query(sql, new UserMapper(), username, password);
+        if (users.size() > 0 && users != null) {
+            user = users.get(0);
+        }
+
         return user;
     }
 
@@ -31,7 +35,11 @@ public class UserDao {
     public User getUserByUsername(String username) {
         User user = null;
         String sql = "select * from user where username = ?";
-        user = template.queryForObject(sql, new UserMapper(), username);
+        try {
+            user = template.queryForObject(sql, new UserMapper(), username);
+        } catch (Exception e) {
+
+        }
         return user;
     }
 

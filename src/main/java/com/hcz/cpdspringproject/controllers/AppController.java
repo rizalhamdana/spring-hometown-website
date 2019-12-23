@@ -26,4 +26,9 @@ public class AppController {
         return "index";
     }
 
+    @RequestMapping("/admin")
+    public String showAdminDashboard(Model model) {
+        return "admin_dashboard";
+    }
+
 }
