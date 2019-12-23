@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Travel</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/home.css">
+	<link rel="stylesheet" type= "text/css" href="css/profil.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body style="overflow-x: hidden;">
+<div class="row">
+	<th:block th:include="navbar.html"></th:block>
+
+	<div class="jumbotron col-md-12" style="">
+		<img src="images/treasure6.jpg" style="width: 100%; margin-top: -100px;">
+	</div>
+	
+	travel page
+	<!-- <div th:if="${isCategorized != null }">
+	<section class="col-md-12 section" id="news_events" style="margin-left: 40px;">
+		<div class="container" style="">
+			<h3 class="text-left">
+				${category.getName()}
+			</h3>
+			<c:if test="${isCategorized != null }">
+				<div class="row thumbnails" style="margin-top: 10px; padding-left: 5px;">
+					<c:forEach var="travel" items="${listTravels}">
+						<div class="col-md-3 thumbnail">
+							<img src="uploads/${travel.getThumbnail()}" class="img-responsive image-news-wonders-2">
+							<a href="<%= Config.getBase_url()%>detailPost?id_travel=${travel.getTravel_id()}">
+								<h4>
+									${travel.getTitle() }		
+								</h4>	
+							</a>
+							<c:choose>
+								<c:when test="${travel.getContents().length() >=50 }">${travel.getContents().substring(0,50) }...</c:when>
+								<c:otherwise>${travel.getContents().substring(0, travel.getContents().length()) } </c:otherwise>
+							</c:choose>
+						</div>
+					</c:forEach>
+				</div>
+			</c:if>
+		</div>
+	</section>
+	</c:if> -->
+	<!-- <c:if test="${isCategorized == null }">
+		<section class="col-md-12 section" id="news_events" style="margin-left: 40px;">
+			<div class="container" style="">
+				<a href="<%= Config.getBase_url()%>Travels?category=2">
+				<h3 class="text-left">
+					Nature
+				</h3></a>
+				<div class="row thumbnails" style="margin-top: 10px; padding-left: 5px;">
+					<c:forEach var="travel" items="${listNatures}">
+						<div class="col-md-3 thumbnail">
+							<img src="uploads/${travel.getThumbnail()}" class="img-responsive image-news-wonders-2">
+							<a href="<%= Config.getBase_url()%>detailPost?id_travel=${travel.getTravel_id()}">
+								<h4>
+									${travel.getTitle() }
+								</h4>
+							</a>
+							<c:choose>
+								<c:when test="${travel.getContents().length() >=50 }">${travel.getContents().substring(0,50) }...</c:when>
+								<c:otherwise>${travel.getContents().substring(0, travel.getContents().length()) } </c:otherwise>
+							</c:choose>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</section>
+		<section class="col-md-12 section" id="news_events" style="margin-left: 40px;">
+			<div class="container" style="">
+				<a href="<%= Config.getBase_url()%>Travels?category=4"><h3 class="text-left">
+					History
+				</h3></a>
+				<div class="row thumbnails" style="margin-top: 10px; padding-left: 5px;">
+					<c:forEach var="travel" items="${listHistory}">
+						<div class="col-md-3 thumbnail">
+							<img src="uploads/${travel.getThumbnail()}" class="img-responsive image-news-wonders-2">
+							<a href="<%= Config.getBase_url()%>detailPost?id_travel=${travel.getTravel_id()}">
+								<h4>
+									${travel.getTitle() }
+								</h4>
+							</a>
+							<c:choose>
+								<c:when test="${travel.getContents().length() >=50 }">${travel.getContents().substring(0,50) }...</c:when>
+								<c:otherwise>${travel.getContents().substring(0, travel.getContents().length()) } </c:otherwise>
+							</c:choose>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</section>
+		<section class="col-md-12 section" id="news_events" style="margin-left: 40px;">
+			<div class="container" style="">
+				<a href="<%= Config.getBase_url()%>Travels?category=5"><h3 class="text-left">
+					Culture
+				</h3></a>
+				<div class="row thumbnails" style="margin-top: 10px; padding-left: 5px;">
+					<c:forEach var="travel" items="${listCulture}">
+						<div class="col-md-3 thumbnail">
+							<img src="uploads/${travel.getThumbnail()}" class="img-responsive image-news-wonders-2">
+							<a href="<%= Config.getBase_url()%>detailPost?id_travel=${travel.getTravel_id()}">
+							<h4>
+								${travel.getTitle() }
+							</h4>
+							</a>
+						
+							<c:choose>
+								<c:when test="${travel.getContents().length() >=50 }">${travel.getContents().substring(0,50) }...</c:when>
+								<c:otherwise>${travel.getContents().substring(0, travel.getContents().length()) } </c:otherwise>
+							</c:choose>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</section>
+		<section class="col-md-12 section" id="news_events" style="margin-left: 40px;">
+			<div class="container" style="">
+				<a href="<%= Config.getBase_url()%>Travels?category=3"><h3 class="text-left">
+					Shopping
+				</h3></a>
+				<div class="row thumbnails" style="margin-top: 10px; padding-left: 5px;">
+					<c:forEach var="travel" items="${listShopping}">
+						<div class="col-md-3 thumbnail">
+							<img src="uploads/${travel.getThumbnail()}" class="img-responsive image-news-wonders-2">
+							<a href="<%= Config.getBase_url()%>detailPost?id_travel=${travel.getTravel_id()}">
+								<h4>
+									${travel.getTitle() }
+								</h4>
+							</a>
+							<c:choose>
+								<c:when test="${travel.getContents().length() >=50 }">${travel.getContents().substring(0,50) }...</c:when>
+								<c:otherwise>${travel.getContents().substring(0, travel.getContents().length()) } </c:otherwise>
+							</c:choose>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</section>
+	</c:if> -->
+
+	<th:block th:include="footer.html"></th:block>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+</div>
+</body>
+</html>
