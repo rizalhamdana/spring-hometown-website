@@ -19,7 +19,7 @@ public class TravelController {
     @RequestMapping("/travels")
     public String index(Model model) {
     	List<Travel> allTravels = travelService.getAllTravels();
-        model.addAttribute("currentTravels", allTravels);
+        model.addAttribute("allTravels", allTravels);
         return "travel";
     }
 
