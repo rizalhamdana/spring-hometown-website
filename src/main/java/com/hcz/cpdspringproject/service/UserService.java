@@ -2,6 +2,9 @@ package com.hcz.cpdspringproject.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import com.hcz.cpdspringproject.dao.UserDao;
 import com.hcz.cpdspringproject.pojo.User;
 
@@ -39,13 +42,25 @@ public class UserService {
         return new UserDao().updateUser(user);
     }
 
-    public User login(String username, String password) {
+    public boolean login(String username, String password, HttpServletRequest request) {
         User user = new UserDao().authentication(username, password);
-        return user;
+        if (user != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("authUser", user);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void deleteUser(int userId) {
         new UserDao().deleteUserById(userId);
+    }
+
+    public boolean isAuthenticated(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("auth");
+        return user != null ? true : false;
     }
 
 }

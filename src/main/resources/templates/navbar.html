@@ -17,8 +17,9 @@
 		        <!-- <li class="link-hover"><a href="<%= Config.getBase_url()+"Profile" %>" class="linkNav">Profile</a></li>-->
 		        <li class="link-hover"><a href="/travels" class="linkNav">Travel</a></li>
 		        <li class="link-hover"><a href="/news" class="linkNav">News</a></li>
-                <li class="link-hover"><a href="/login" class="linkNav">Login</a></li>
-		        
+				<li th:if="${session.authUser  == null}" class="link-hover"><a href="/login" class="linkNav">Login</a></li>
+            	<li th:unless="${session.authUser == null} " class="link-hover"><a  href="/user-profile" class="linkNav"><span th:text="${session.authUser.username}"></span></a></li>
+            
 		       
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
