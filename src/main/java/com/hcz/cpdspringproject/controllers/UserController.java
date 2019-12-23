@@ -1,11 +1,14 @@
 package com.hcz.cpdspringproject.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.hcz.cpdspringproject.pojo.User;
 
 import com.hcz.cpdspringproject.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,25 +24,32 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public String showLoginPage(Model model) {
-        User formUser = new User();
-        model.addAttribute("formUser", formUser);
+    public String showLoginPage(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("authUser");
+        if (user != null) {
+            return user.getStatus().equalsIgnoreCase("admin") ? "redirect:/admin" : "redirect:/";
+        }
+        user = new User();
+        model.addAttribute("user", user);
         return "login";
     }
 
-    // @RequestMapping(value = "/login", method = RequestMethod.POST)
-    // public String authentication(@ModelAttribute("formUser") User userForm) {
-    // String username = userForm.getUsername();
-    // String password = userForm.getPassword();
-    // User user = userService.login(username, password);
-    // if (user != null) {
-    // session.setAttribute("authUser", user);
-    // return "admin_dashboard";
-    // } else {
-
-    // return "login";
-    // }
-    // }
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String authentication(@ModelAttribute("user") User user, HttpServletRequest request,
+            HttpServletResponse response, Model model) {
+        String username = user.getUsername();
+        String password = user.getPassword();
+        if (userService.login(username, password, request)) {
+            user = (User) request.getSession().getAttribute("authUser");
+            return user.getStatus().equalsIgnoreCase("admin") ? "redirect:/admin" : "redirect:/";
+        } else {
+            user = new User();
+            model.addAttribute("user", user);
+            model.addAttribute("error_message", "Invalid username or password");
+            return "login";
+        }
+    }
 
     @RequestMapping("/register")
     public String showRegisterPage(Model model) {
@@ -56,5 +66,12 @@ public class UserController {
             return "register";
         }
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logoutAuthUser(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "login";
     }
 }

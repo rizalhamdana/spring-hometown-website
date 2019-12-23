@@ -22,9 +22,8 @@
 				<hr style="margin-bottom: 50px;">
 				<div class="row row-news">
 					<div th:each="news : ${allNews}" class="col-md-3 news-thumb">
-						<!-- <img src="uploads/${news.getThumbnail() }" class="img-responsive image-news-wonders-2">
-						<a href="<%= Config.getBase_url()%>detailPost?id_news=${news.getNews_id()}"> -->
-						<a href="">
+						<img src="@{uploads/} + ${news.thumbnail}" class="img-responsive image-news-wonders-2">
+						<a href="@{/news/details(news_id=${news.newsId})}"> 
 							<h4>
 								<p th:text="${news.title}"></p>
 							</h4>
