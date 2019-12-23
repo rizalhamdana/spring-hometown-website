@@ -39,10 +39,9 @@ public class UserService {
         return new UserDao().updateUser(user);
     }
 
-    public boolean login(String username, String password) {
-
+    public User login(String username, String password) {
         User user = new UserDao().authentication(username, password);
-        return user != null ? true : false;
+        return user;
     }
 
     public void deleteUser(int userId) {

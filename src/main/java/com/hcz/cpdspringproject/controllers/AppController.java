@@ -25,4 +25,5 @@ public class AppController {
         model.addAttribute("currentNews", allNews);
         return "index";
     }
+
 }

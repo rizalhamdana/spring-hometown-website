@@ -21,22 +21,21 @@
 				<h3 class="text-left" style="margin-top: 50px !important;">News & Events</h3>
 				<hr style="margin-bottom: 50px;">
 				<div class="row row-news">
-					News Title Statis
-					<!-- <c:forEach var="news" items="${allNews }">
-						<div class="col-md-3" class="news-thumb">
-							<img src="uploads/${news.getThumbnail() }" class="img-responsive image-news-wonders-2">
-							<a href="<%= Config.getBase_url()%>detailPost?id_news=${news.getNews_id()}">
-								<h4>
-									${news.getTitle()}
-								</h4>
-							</a>
-							<c:choose>
-								<c:when test="${news.getContents().length() >=100 }">${news.getContents().substring(0,100) }...</c:when>
-								<c:otherwise>${news.getContents().substring(0, news.getContents().length()) } </c:otherwise>
-							</c:choose>
-							
+					<div th:each="news : ${allNews}" class="col-md-3 news-thumb">
+						<!-- <img src="uploads/${news.getThumbnail() }" class="img-responsive image-news-wonders-2">
+						<a href="<%= Config.getBase_url()%>detailPost?id_news=${news.getNews_id()}"> -->
+						<a href="">
+							<h4>
+								<p th:text="${news.title}"></p>
+							</h4>
+						</a>
+						<div th:if="${news.contents.length() >= 100}">
+							<p th:text="${news.contents.substring(0,100) }">...</p>
 						</div>
-					</c:forEach> -->
+						<div th:unless="${news.contents.length() >= 100}">
+                            <p th:text="${news.contents.substring(0,news.contents.length()) }">...</p>
+                        </div>
+					</div>
 				</div>
 			</div>
 		</div>
