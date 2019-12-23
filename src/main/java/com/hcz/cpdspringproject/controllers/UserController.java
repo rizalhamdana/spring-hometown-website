@@ -5,6 +5,7 @@ import com.hcz.cpdspringproject.pojo.User;
 import com.hcz.cpdspringproject.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,9 +21,25 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public String showLoginPage() {
+    public String showLoginPage(Model model) {
+        User formUser = new User();
+        model.addAttribute("formUser", formUser);
         return "login";
     }
+
+    // @RequestMapping(value = "/login", method = RequestMethod.POST)
+    // public String authentication(@ModelAttribute("formUser") User userForm) {
+    // String username = userForm.getUsername();
+    // String password = userForm.getPassword();
+    // User user = userService.login(username, password);
+    // if (user != null) {
+    // session.setAttribute("authUser", user);
+    // return "admin_dashboard";
+    // } else {
+
+    // return "login";
+    // }
+    // }
 
     @RequestMapping("/register")
     public String showRegisterPage(Model model) {
