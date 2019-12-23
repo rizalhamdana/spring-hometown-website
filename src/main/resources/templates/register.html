@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/custom.css">
+	<script src="js/custom-style.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Register</title>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="container login-register-wrapper">
+				<div class="col-md-offset-4 col-md-4">
+					<a href="Index"><img src="images/logo.png" class="img-responsive mg-bt-50"></a>
+					<form method="post" action="#" th:action="@{/register}" th:object="${user}" class="form-horizontal" onsubmit="return validation()">
+						<div class="form-group">
+							<input type="text" class="form-control" th:field="*{firstName}" name="first_name" placeholder="First Name" id="firstname" 
+							onFocus="validate('firstname', 'firstname-alert')" onChange="validate('firstname', 'firstname-alert')" required>
+							<span class="alert" id="firstname-alert"></span>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" th:field="*{lastName}" name="last_name" placeholder="Last Name" id="lastname"
+							onFocus="validate('lastname', 'lastname-alert')" onChange="validate('lastname', 'lastname-alert')" required>
+							<span class="alert" id="lastname-alert"></span>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" th:field="*{username}" name="username" placeholder="Username" id="username"
+							onFocus="validate('username', 'username-alert')" onChange="validate('username', 'username-alert')" required>
+							<span class="alert" id="username-alert"></span>
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" th:field="*{password}" name="password" placeholder="Password" id="password"
+							onFocus="validate('password', 'password-alert')" onChange="validate('password', 'password-alert')" required>
+							<span class="alert" id="password-alert"></span>
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" id="confirmPassword"
+							onFocus="validate('confirmPassword', 'confirmPassword-alert'), checkSame('password', 'confirmPassword')checkSame('password', 'confirmPassword')" 
+							onChange="validate('confirmPassword', 'confirmPassword-alert'), checkSame('password', 'confirmPassword')" required
+							>
+							<span class="alert" id="confirmPassword-alert"></span>
+						</div>
+						<div class="form-group">
+							<input type="email" class="form-control" th:field="*{email}" name="email" placeholder="E-mail" id="email"
+							onFocus="validate('email', 'email-alert')" onChange="validate('email', 'email-alert')" required>
+							<span class="alert" id="email-alert"></span>
+						</div>
+						<div class="form-group">
+							<a href="login">I already have an account</a>
+						</div>
+						
+						<div class="form-group">
+							<input type="submit" name="submit" class="btn btn-primary" value="Register" style="width: 100%" >
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

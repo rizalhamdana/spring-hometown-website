@@ -1,0 +1,16 @@
+.text-welcome{
+	font-size: 16px;
+
+}
+.section{
+	margin:0px 0 30px 0;	
+}
+#vision-mission{
+	background-color: #1090ee;
+	color: #f5f5f5;
+	padding-top: 30px;
+	padding-bottom: 60px;
+}
+.text-visi-misi{
+	font-size: 18px;
+}

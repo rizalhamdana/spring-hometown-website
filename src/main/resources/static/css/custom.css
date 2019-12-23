@@ -1,0 +1,40 @@
+.login-register-wrapper {
+	margin-top: 100px;
+}
+
+.mg-bt-50 {
+	margin-bottom: 50px;
+}
+
+.mg-tp-100 {
+	margin-top: 100px
+}
+
+.mg-50 {
+	margin: 50px 50px;
+}
+
+.input-container {
+	margin: 30px 10px;
+}
+
+.form-control{
+	margin-bottom: 5px;
+}
+
+
+
+.alert {
+	color: red;
+	
+}
+
+
+
+
+.btn {
+	width: 530px;
+	padding: 10px 10px;
+	
+	border: none;
+}
