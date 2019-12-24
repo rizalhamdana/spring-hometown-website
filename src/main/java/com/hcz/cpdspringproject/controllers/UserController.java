@@ -1,5 +1,7 @@
 package com.hcz.cpdspringproject.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -73,5 +75,13 @@ public class UserController {
         HttpSession session = request.getSession();
         session.invalidate();
         return "login";
+    }
+    
+    // Admin User Dashboard
+    @RequestMapping(value = "/admin/adminAllUsers")
+    public String getAllUsers(Model model) {
+        List<User> allUsers = userService.getAllUsers();
+        model.addAttribute("allUsers", allUsers);
+        return "admin/usersDashboard";
     }
 }

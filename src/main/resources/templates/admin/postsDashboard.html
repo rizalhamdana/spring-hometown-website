@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>List Posts</title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+ 	<!-- CSS Files -->
+ 	<link href="<%=Config.getBase_url() %>css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+ 	<!-- CSS Just for demo purpose, don't include it in your project -->
+ 	<link href="<%=Config.getBase_url() %>assets/demo/demo.css" rel="stylesheet" />
+ 	<link href="<%=Config.getBase_url() %>css/material-icons.css" rel="stylesheet" />
+ 	<script src="<%= Config.getBase_url()%>js/custom-style.js"></script>
+</head>
+<!-- <body onload='setActiveLink("<%=activeLink %>")'> -->
+<body>
+	<div class="wrapper">
+	<th:block th:include="admin/sidebar.html">
+    </th:block>
+		<div class="main-panel">
+			<th:block th:include="admin/navbar.html">
+		    </th:block>
+			<div class="content">
+        		<div class="container-fluid">
+          			<div class="row">
+            			<div class="col-md-12">
+              				<div class="card">
+                				<div class="card-header card-header-primary">
+                  					<h4 class="card-title ">News</h4>
+                  					<p class="card-category"> Here is some list of news</p>
+                				</div>
+                				<div class="card-body">
+                 					 <div class="table-responsive">
+                    					<table class="table">
+                      						<thead class=" text-primary">
+                      							<tr>
+                      								<th>Title</th>
+                        							<th>Date Created</th>
+                        							<th>Category</th>
+                        							<th>Action</th>
+                      							</tr>  
+                      						</thead>
+                      						<tbody>
+                      						<div th:each="news : ${allNews }">
+                      							<tr>
+                         							<td><a href="">${news.title }</a></td>
+                         							<td>${news.date_created }</td>
+                         							<td>${news.category.name }</td>
+                         							<td>
+                         								<a href="" class="btn btn-primary btn-link btn-sm">
+                         									<i class="material-icons">
+																edit
+															</i>
+                         								</a>
+                         								<a href="" class="btn btn-danger btn-link btn-sm">
+                         									<i class="material-icons">
+																delete
+															</i>
+														</a>
+                         								
+                         							</td>
+                        						</tr>
+                      						</div>
+                      						<!-- <c:forEach var="news" items="${allNews }">
+                      							<tr>
+                         							<td><a href="<%=Config.getBase_url()%>detailPost?id_news=${news.getNews_id()}">${news.getTitle() }</a></td>
+                         							<td>${news.getDate_created() }</td>
+                         							<td>${news.getCategory().getName() }</td>
+                         							<td>
+                         								<a href="<%=Config.getBase_url()%>editNews?id_news=${news.getNews_id()}" class="btn btn-primary btn-link btn-sm">
+                         									<i class="material-icons">
+																edit
+															</i>
+                         								</a>
+                         								<a href="<%=Config.getBase_url()%>deleteNews?id_news=${news.getNews_id()}" class="btn btn-danger btn-link btn-sm">
+                         									<i class="material-icons">
+																delete
+															</i>
+														</a>
+                         								
+                         							</td>
+                        						</tr>
+                      						</c:forEach> -->
+                      						</tbody>
+                    					</table>
+                    					<a href="" class="btn btn-primary btn-link btn-lg">
+                    						<i class="material-icons">
+												add_box
+											</i> <strong>News</Strong>
+                    					</a>
+                  					</div>
+                				</div>
+              				</div>
+            			</div>
+            		</div>
+            		<div class="row">
+            			<div class="col-md-12">
+              				<div class="card">
+                				<div class="card-header card-header-primary">
+                  					<h4 class="card-title ">Travel Destination</h4>
+                  					<p class="card-category"> Here is some list of destination to visit</p>
+                				</div>
+                				<div class="card-body">
+                  					<div class="table-responsive">
+                    					<table class="table">
+                      						<thead class=" text-primary">
+                      							<tr>
+                      								<th>Title</th>
+                        							<th>Category</th>
+                        							<th>Likes</th>
+                        							<th>Dislikes</th>
+                       	 							<th>Action</th>
+                      							</tr>
+                      						</thead>
+                      						<tbody>
+                      						<div th:each="travel : ${allTravels }">
+                      							<tr>
+                         							<td><a href="">${travel.title }</a></td>
+                         							<td>${travel.category.name }</td>
+                         							<td>${travel.like }</td>
+                         							<td>${travel.dislikes }</td>
+                         							<td>
+                         								<a href="" class="btn btn-primary btn-link btn-sm">
+                         									<i class="material-icons">
+																edit
+															</i>
+                         								</a>
+                         								<a href="" class="btn btn-danger btn-link btn-sm">
+                         									<i class="material-icons">
+																delete
+															</i>
+                         								</a>  
+                         								
+                         							</td>
+                        						</tr>
+                      						</div>
+                       						<!-- <c:forEach var="travel" items="${allTravels }">
+                      							<tr>
+                         							<td><a href="<%=Config.getBase_url()%>detailPost?id_travel=${travel.getTravel_id()}">${travel.getTitle() }</a></td>
+                         							<td>${travel.getCategory().getName() }</td>
+                         							<td>${travel.getLikes() }</td>
+                         							<td>${travel.getDislikes() }</td>
+                         							<td>
+                         								<a href="<%=Config.getBase_url()%>editTravel?id_travel=${travel.getTravel_id()}" class="btn btn-primary btn-link btn-sm">
+                         									<i class="material-icons">
+																edit
+															</i>
+                         								</a>
+                         								<a href="<%=Config.getBase_url()%>deleteTravel?id_travel=${travel.getTravel_id()}" class="btn btn-danger btn-link btn-sm">
+                         									<i class="material-icons">
+																delete
+															</i>
+                         								</a>  
+                         								
+                         							</td>
+                        						</tr>
+                      						</c:forEach> -->
+                      						</tbody>
+                    					</table>
+                    					<a href="" class="btn btn-primary btn-link btn-lg">
+                    						<i class="material-icons">
+												add_box
+											</i> <strong>Travels</Strong>
+											
+                    					</a>
+                  					</div>
+                				</div>
+              				</div>
+            			</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+</body>
+</html>
