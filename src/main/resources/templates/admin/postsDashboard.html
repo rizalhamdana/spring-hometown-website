@@ -5,11 +5,9 @@
 	<title>List Posts</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
  	<!-- CSS Files -->
- 	<link href="<%=Config.getBase_url() %>css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
- 	<!-- CSS Just for demo purpose, don't include it in your project -->
- 	<link href="<%=Config.getBase_url() %>assets/demo/demo.css" rel="stylesheet" />
- 	<link href="<%=Config.getBase_url() %>css/material-icons.css" rel="stylesheet" />
- 	<script src="<%= Config.getBase_url()%>js/custom-style.js"></script>
+ 	<link rel="stylesheet" type="text/css" th:href="@{/css/material-dashboard.css}">
+ 	<link rel="stylesheet" type="text/css" th:href="@{/css/material-icons.css}">
+ 	<script type="text/javascript" th:src="@{/js/custom-style.js}"></script>
 </head>
 <!-- <body onload='setActiveLink("<%=activeLink %>")'> -->
 <body>
@@ -82,7 +80,7 @@
                       						</c:forEach> -->
                       						</tbody>
                     					</table>
-                    					<a href="" class="btn btn-primary btn-link btn-lg">
+                    					<a href="/newsForm" class="btn btn-primary btn-link btn-lg">
                     						<i class="material-icons">
 												add_box
 											</i> <strong>News</Strong>
@@ -156,11 +154,10 @@
                       						</c:forEach> -->
                       						</tbody>
                     					</table>
-                    					<a href="" class="btn btn-primary btn-link btn-lg">
+                    					<a href="/travelForm" class="btn btn-primary btn-link btn-lg">
                     						<i class="material-icons">
 												add_box
 											</i> <strong>Travels</Strong>
-											
                     					</a>
                   					</div>
                 				</div>

@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>
+		<div th:if="${editTravel != null }">Edit Travel</div>
+		<div th:unless="${editTravel == null }">Add Travel</div>
+	</title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+ 	<!-- CSS Files -->
+ 	<link rel="stylesheet" type="text/css" th:href="@{/css/material-dashboard.css}">
+ 	<link rel="stylesheet" type="text/css" th:href="@{/css/material-icons.css}">
+ 	<script type="text/javascript" src="/js/plugins/ckeditor/ckeditor.js"></script>
+</head>
+<body>
+<style>
+	.img-responsive{
+		max-width: 70%;
+	}
+</style>
+<div class="wrapper">
+	<th:block th:include="admin/sidebar.html">
+    </th:block>
+		<div class="main-panel">
+			<th:block th:include="admin/navbar.html">
+		    </th:block>
+		<div class="content">
+			<div class="content">
+       			<div class="container-fluid">
+       				<div class="row">
+       					 <div class="col-md-12">
+             				<div class="card">
+                				<div class="card-header card-header-primary">
+                  					<h4 class="card-title">
+                  						<p th:if="${editTravel != null }">Edit Travel Destination</p>
+                  						<p th:unless="${editTravel != null }">Add Travel Destination</p>
+                  					</h4>
+                  					<p class="card-category"></p>
+                				</div>
+               					<div class="card-body">
+                					<form method="POST" action="" enctype="multipart/form-data">
+                    					<div class="row">
+                      						<div class="col-md-12">
+                        						<div class="form-group">
+                          							<label class="bmd-label-floating" >Title</label>
+                         							<input th:if="${editTravel != null }" type="text" name="title" class="form-control" value="${editTravel.title }"/>
+                        						</div>
+                      						</div>
+                    					</div>
+                    					<div class="row" style="margin-bottom: 50px;">
+                      						<div class="col-md-2">
+                        						<div class="form-group">
+                          							<label th:if="${editTravel != null }" class="bmd-label-floating">
+                          								Change All
+                          							</label>	
+                          							<label th:unless="${editTravel != null }" class="bmd-label-floating">
+                          								Image Thumbnail
+                          							</label>	
+                        						</div>
+                      						</div>
+                      						<div class="col-md-4">
+                        						<input th:if="${editTravel == null }" type="file" name="thumbnail" accept="image/*" multiple required />
+                      						</div>	
+                    					</div>
+                    					<div th:if="${editTravel != null }">
+                    						<div class="row" style="margin-bottom: 50px;">
+                    							<div th:each="thumbnail : ${thumbnails }">
+                    								<div class="col-md-2">
+                        								<div class="form-group">
+                          									<img src="uploads/${thumbnail }" alt="" class="img-responsive">	
+                        								</div>
+                      								</div>
+                    							</div>
+                      						</div>
+                      					</div>
+                    					
+                    					<div class="row">
+                      						<div class="col-md-4">
+                        						<div class="form-group">
+                          							<label class="bmd-label-floating" name="title">Category</label>
+                         							<select name="category" class="form-control">
+                         								<div th:each="category : ${allCategories }">
+                         									<option th:if="${category.category_id == editTravel.category.category_id}" value="${category.category_id }" selected="true"> 
+                         										${category.name }
+                         									</option>
+                         									<option th:unless="${category.category_id == editTravel.category.category_id}" value="${category.category_id }"> 
+                         										${category.name }
+                         									</option>
+                         								</c:forEach>
+                         							</select>
+                        						</div>
+                      						</div>
+                    					</div>
+                    					<div class="row">
+                      						<div class="col-md-12">
+                        						<div class="form-group">
+                          							<label>Contents</label>
+                          							<div class="form-group">
+                            							<textarea class="form-control" rows="20" id="editor" name="contents">
+                            								<p th:if="${editTravel != null }">${editTravel.contents}</p>
+                            							</textarea>
+                          							</div>
+                        						</div>
+                      						</div>
+                    					</div>
+                    					<div th:if="${editTravel != null }">
+                    						<input type="hidden" name="travel_id" value="${editTravel.travel_id}">
+                    						<input type="hidden" name="likes" value="${editTravel.likes}">
+                    						<input type="hidden" name="dislikes" value="${editTravel.dislikes}">
+                    						<input type="hidden" name="thumbnailHidden" value="${editTravel.thumbnail}">
+                    					</div>
+                    					
+                    					<button type="submit" class="btn btn-primary pull-right">Post</button> &nbsp
+                    					<a href="/admin/allPosts" class="btn btn-danger">Cancel</a>
+                    					<div class="clearfix"></div>
+                  					</form>
+               					</div>
+               				</div>
+               			</div>
+               		</div>
+               	</div>
+              </div>				
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+   CKEDITOR.replace( 'editor' );
+</script>
+</body>
+</html>

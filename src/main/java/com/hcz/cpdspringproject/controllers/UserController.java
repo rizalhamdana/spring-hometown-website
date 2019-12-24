@@ -78,7 +78,7 @@ public class UserController {
     }
     
     // Admin User Dashboard
-    @RequestMapping(value = "/admin/adminAllUsers")
+    @RequestMapping(value = "/admin/allUsers")
     public String getAllUsers(Model model) {
         List<User> allUsers = userService.getAllUsers();
         model.addAttribute("allUsers", allUsers);

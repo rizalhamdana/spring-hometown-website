@@ -30,5 +30,20 @@ public class AppController {
     public String showAdminDashboard(Model model) {
         return "admin/index";
     }
+    
+    @RequestMapping("/admin/allPosts")
+    public String showPostDashboard(Model model) {
+        return "admin/postsDashboard";
+    }
+    
+    @RequestMapping("/newsForm")
+    public String showNewsForm(Model model) {
+        return "admin/forms/newsForm";
+    }
+    
+    @RequestMapping("/travelForm")
+    public String showTravelForm(Model model) {
+        return "admin/forms/travelForm";
+    }
 
 }
