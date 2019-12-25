@@ -18,13 +18,8 @@ public class TravelController {
 
     @RequestMapping("/travels")
     public String index(Model model) {
-<<<<<<< HEAD
         List<Travel> allTravels = travelService.getAllTravels();
-        model.addAttribute("currentTravels", allTravels);
-=======
-    	List<Travel> allTravels = travelService.getAllTravels();
         model.addAttribute("allTravels", allTravels);
->>>>>>> 350217ed45ea42fd23f5d50ca703777102ab6cbe
         return "travel";
     }
 

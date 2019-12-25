@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>List Posts</title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+ 	<!-- CSS Files -->
+ 	<link rel="stylesheet" type="text/css" th:href="@{/css/material-dashboard.css}">
+ 	<link rel="stylesheet" type="text/css" th:href="@{/css/material-icons.css}">
+ 	<script type="text/javascript" th:src="@{/js/custom-style.js}"></script>
+	 
+</head>
+<body>
+	<div class="wrapper">
+	<th:block th:include="admin/sidebar.html">
+    </th:block>
+		<div class="main-panel">
+			<th:block th:include="admin/navbar.html">
+		    </th:block>
+			<div class="content">
+        		<div class="container-fluid">
+          			<div class="row">
+            			<div class="col-md-12">
+              				<div class="card">
+                				<div class="card-header card-header-primary">
+                  					<h4 class="card-title ">News</h4>
+                  					<p class="card-category"> Here is some list of news</p>
+                				</div>
+                				<div class="card-body">
+                 					 <div class="table-responsive">
+                    					<table class="table" style="text-align: center;">
+                      						<thead class=" text-primary" >
+                      							<tr>
+                      								<th>Title</th>
+                        							<th>Date Created</th>
+                        							<th>Category</th>
+                        							<th colspan="2">Action</th>
+                      							</tr>  
+                      						</thead>
+                      						<tbody>
+                      						<div th:each="news : ${allNews}">
+                      							<tr>
+                         							<td><a href="" th:text="${news.title }"></a></td>
+                         							<td th:text="${news.dateCreated }"></td>
+													 <td th:text="${news.category.name }">${news.category.name }</td>
+													<td>
+														<br>
+														<a href="" class="btn btn-primary btn-link btn-sm">
+															<i class="material-icons">
+																edit
+															</i>
+														</a>
+													</td>
+                         							<td>
+														 <br>
+                         								<a th:href="@{/admin/news/delete(news_id=${news.newsId})}" class="btn btn-danger btn-link btn-sm">
+                         									<i class="material-icons">
+																delete
+															</i>
+														 </a>
+														 <br>
+                         								<!-- <a th:href="@{}" >
+                         									
+														</a> -->
+                         							</td>
+                        						</tr>
+                      						</div>
+                      						</tbody>
+                    					</table>
+                    					<a href="/admin/add-news" class="btn btn-primary btn-link btn-lg">
+                    						<i class="material-icons">
+												add_box
+											</i> <strong>News</Strong>
+                    					</a>
+                  					</div>
+                				</div>
+              				</div>
+            			</div>
+            		</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+</body>
+</html>

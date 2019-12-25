@@ -76,9 +76,9 @@ public class UserController {
         session.invalidate();
         return "redirect:/login";
     }
-    
+
     // Admin User Dashboard
-    @RequestMapping(value = "/admin/allUsers")
+    @RequestMapping(value = "/admin/all-users")
     public String getAllUsers(Model model) {
         List<User> allUsers = userService.getAllUsers();
         model.addAttribute("allUsers", allUsers);

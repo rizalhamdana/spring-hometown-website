@@ -1,15 +1,10 @@
 <head>
  	<link rel="stylesheet" type="text/css" th:href="@{/css/material-icons.css}">
   </head>
-<div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
+<div class="sidebar" data-color="purple" data-background-color="white">
       <div class="logo">
         <a href="#" class="">
-         <img src="./images/logo.png" class="logo img-responsive" style="max-height: 100px; margin-left: 20px;">
+         <img th:src="@{images/logo.png}" class="logo img-responsive" style="max-height: 100px; margin-left: 20px;">
         </a>
       </div>
       <div class="sidebar-wrapper">
@@ -23,16 +18,23 @@
           </li>
           <li class="nav-item " id="users">
             <!-- <a class="nav-link" href="<%= Config.getBase_url()%>listOfUsers"> -->
-            <a class="nav-link" href="/admin/allUsers">
+            <a class="nav-link" href="/admin/all-users">
             	<i class="material-icons">person</i>
               	<p>Users</p>
             </a>
           </li>
           <li class="nav-item " id="posts">
             <!-- <a class="nav-link" href="<%= Config.getBase_url()%>getAllPostsAdmin"> -->
-            <a class="nav-link" href="/admin/allPosts">
+            <a class="nav-link" href="/admin/all-news">
             	<i class="material-icons">content_paste</i>
-              	<p>Posts</p>
+              	<p>News</p>
+            </a>
+          </li>
+          <li class="nav-item " id="posts">
+            <!-- <a class="nav-link" href="<%= Config.getBase_url()%>getAllPostsAdmin"> -->
+            <a class="nav-link" href="/admin/all-travels">
+            	<i class="material-icons">content_paste</i>
+              	<p>Travels</p>
             </a>
           </li>
         </ul>
