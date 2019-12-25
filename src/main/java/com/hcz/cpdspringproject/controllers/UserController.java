@@ -74,7 +74,7 @@ public class UserController {
     public String logoutAuthUser(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.invalidate();
-        return "login";
+        return "redirect:/login";
     }
     
     // Admin User Dashboard
