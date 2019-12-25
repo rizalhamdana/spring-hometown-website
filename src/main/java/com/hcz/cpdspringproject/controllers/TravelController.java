@@ -19,13 +19,13 @@ import com.hcz.cpdspringproject.service.TravelService;
  */
 @Controller
 public class TravelController {
-	
-	@Autowired
+
+    @Autowired
     private TravelService travelService;
 
     @RequestMapping("/travels")
     public String index(Model model) {
-    	List<Travel> allTravels = travelService.getAllTravels();
+        List<Travel> allTravels = travelService.getAllTravels();
         model.addAttribute("allTravels", allTravels);
         return "travel";
     }
@@ -77,6 +77,5 @@ public class TravelController {
             return "error_400";
         }
     }
-
 
 }

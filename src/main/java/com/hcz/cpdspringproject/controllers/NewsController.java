@@ -45,7 +45,7 @@ public class NewsController {
         List<News> allNews = newsService.getAllNews();
         if (allNews != null) {
             model.addAttribute("allNews", allNews);
-            return "admin_news";
+            return "admin/newsDashboard";
         } else {
             return "error_404";
         }
@@ -55,7 +55,7 @@ public class NewsController {
     public String showAddNewsForm(Model model) {
         News news = new News();
         model.addAttribute("news", news);
-        return "admin_add_news_form";
+        return "admin/forms/newsForm";
     }
 
     @RequestMapping(value = "/admin/news", method = RequestMethod.GET)
@@ -69,7 +69,7 @@ public class NewsController {
         }
     }
 
-    @RequestMapping(value = "/admin/news", method = RequestMethod.PUT)
+    @RequestMapping(value = "/admin/news/update", method = RequestMethod.PUT)
     public String adminUpdateNews(@ModelAttribute("news") News news) {
         int updateNews = newsService.updateNews(news);
         if (updateNews > 0) {
@@ -89,11 +89,11 @@ public class NewsController {
         }
     }
 
-    @RequestMapping(value = "/admin/news", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/admin/news/delete", method = RequestMethod.GET)
     public String adminDeleteNews(@RequestParam("news_id") int newsId) {
         int deletedNews = newsService.deleteNews(newsId);
         if (deletedNews > 0) {
-            return "redirect:admin/news";
+            return "redirect:/admin/all-news";
         } else {
             return "error_400";
         }

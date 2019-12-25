@@ -9,6 +9,7 @@
  	<link rel="stylesheet" type="text/css" th:href="@{/css/material-icons.css}">
  	<script type="text/javascript" th:src="@{/js/custom-style.js}"></script>
 </head>
+<body>
 	<div class="wrapper">
 	<th:block th:include="admin/sidebar.html">
     </th:block>
@@ -26,7 +27,7 @@
                  					</div>
                   					<p class="card-category">Registered Users</p>
                   					<h3 class="card-title">
-                    					<!-- ${totalUsers } -->
+                    					<span th:text="${numUsers}"></span>
                     					Total Users
                   					</h3>
                 				</div>
@@ -46,7 +47,7 @@
                  					</div>
                   					<p class="card-category">Posted Destinations</p>
                   					<h3 class="card-title">
-                    					<!-- ${totalTravels } -->
+                    					<span th:text="${numTravels}"></span>
                     					Total Travels
                   					</h3>
                 				</div>
@@ -66,7 +67,7 @@
                  					</div>
                   					<p class="card-category">Published News</p>
                   					<h3 class="card-title">
-                    					<!-- ${totalNews } -->
+                    					<span th:text="${numNews}"></span>
                     					Total News
                   					</h3>
                 				</div>

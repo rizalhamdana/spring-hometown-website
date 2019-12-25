@@ -18,7 +18,7 @@
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
         <property name="url" value="jdbc:mysql://localhost:3306/hometown_web"></property>
         <property name="username" value="root"></property>
-        <property name="password" value=""></property>
+        <property name="password" value="21mei1998"></property>
         <property name="maxActive" value="10"></property>
         <property name="maxIdle" value="5"></property>
         <property name="maxWait" value="10000"></property>
