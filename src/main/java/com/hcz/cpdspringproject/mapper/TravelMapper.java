@@ -19,7 +19,7 @@ public class TravelMapper implements RowMapper<Travel> {
         travel.setTravelId(rs.getInt("travel_id"));
         travel.setTitle(rs.getString("title"));
         travel.setContents(rs.getString("contents"));
-        travel.setUser(rs.getInt("user_id"));
+        travel.setUser(rs.getInt("user"));
         Category category = new Category();
         category.setCategoryId(rs.getInt("category_id"));
         category.setName(rs.getString("name"));

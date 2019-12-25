@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Users List</title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+ 	<!-- CSS Files -->
+ 	<link rel="stylesheet" type="text/css" th:href="@{/css/material-dashboard.css}">
+ 	<link rel="stylesheet" type="text/css" th:href="@{/css/material-icons.css}">
+ 	<script type="text/javascript" th:src="@{/js/custom-style.js}"></script>
+</head>
+<!-- <body onload='setActiveLink("<%=activeLink %>")'> -->
+<body>
+	<div class="wrapper">
+	<th:block th:include="admin/sidebar.html">
+    </th:block>
+		<div class="main-panel">
+			<th:block th:include="admin/navbar.html">
+		    </th:block>
+			<div class="content">
+        		<div class="container-fluid">
+          			<div class="row">
+            			<div class="col-md-12">
+              				<div class="card">
+                				<div class="card-header card-header-primary">
+                  					<h4 class="card-title ">Users List</h4>
+                  					<p class="card-category"> Here is some list of Users</p>
+                				</div>
+                				<div class="card-body">
+                 					 <div class="table-responsive">
+                    					<table class="table">
+                      						<thead class=" text-primary">
+                      							<tr>
+                      								<th>Username</th>
+                        							<th>First Name</th>
+                        							<th>Last Name</th>
+                        							<th>Email</th>
+                        							<th>Action</th>
+                      							</tr>  
+                      						</thead>
+                      						<tbody>
+                      						<div th:each="user : ${allUsers}">
+                      							<tr>
+                         							<td><p th:text="${user.username}"></p></td>
+                         							<td><p th:text="${user.firstName}"></p></td>
+                         							<td><p th:text="${user.lastName}"></p></td>
+                         							<td><p th:text="${user.email}"></p></td>
+                         							<td>
+                         								<a href="" class="">
+                         									<i class="material-icons">
+																open_in_browser
+															</i>
+                         								</a>
+                         							</td>
+                        						</tr>
+                      						</div>
+                      						</tbody>
+                    					</table>
+                  					</div>
+                				</div>
+              				</div>
+            			</div>
+            		</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+</body>
+</html>
