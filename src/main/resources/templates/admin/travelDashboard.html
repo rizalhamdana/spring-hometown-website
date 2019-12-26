@@ -32,7 +32,6 @@
                       						<thead class=" text-primary">
                       							<tr>
                       								<th>Title</th>
-                        							<th>Date Created</th>
                         							<th>Category</th>
                         							<th>Action</th>
                       							</tr>  
@@ -40,9 +39,9 @@
                       						<tbody>
                       						<div th:each="travel : ${allTravels }">
                       							<tr>
-                         							<td><a href="">${travel.title }</a></td>
-                         							<td>${travel.date_created }</td>
-                         							<td>${travel.category.name }</td>
+                         							<td><a href="" th:text="${travel.title }"></a></td>
+                         				
+                         							<td th:text="${travel.category.name }"></td>
                          							<td>
                          								<a href="" class="btn btn-primary btn-link btn-sm">
                          									<i class="material-icons">

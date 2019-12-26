@@ -45,7 +45,7 @@
 													 <td th:text="${news.category.name }">${news.category.name }</td>
 													<td>
 														<br>
-														<a href="" class="btn btn-primary btn-link btn-sm">
+														<a th:href="@{/admin/edit-news-form(news_id=${news.newsId})}" class="btn btn-primary btn-link btn-sm">
 															<i class="material-icons">
 																edit
 															</i>

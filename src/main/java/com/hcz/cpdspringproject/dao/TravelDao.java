@@ -28,14 +28,14 @@ public class TravelDao {
     public int addTravel(Travel travel) {
         String sql = "insert into travel values(null, ?, ?, ?, ?, ?, ?, ?)";
         return template.update(sql, travel.getTitle(), travel.getContents(), travel.getThumbnail(), travel.getUser(), 0,
-                0, travel.getCategory().getCategoryId());
+                0, travel.getCategory());
     }
 
     public int updateTravel(Travel travel) {
         String sql = "update travel set title = ?, contents = ?, thumbnail = ?, date_created = ?, user = ?, category = ? where travel_id = "
                 + travel.getTravelId();
         return template.update(sql, travel.getTitle(), travel.getContents(), travel.getThumbnail(), travel.getUser(),
-                travel.getCategory().getCategoryId());
+                travel.getCategory());
     }
 
     public int likeOrDislike(String column, int numberOfLikesOrDislikes, int travelId) {

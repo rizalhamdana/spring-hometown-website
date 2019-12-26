@@ -2,6 +2,8 @@ package com.hcz.cpdspringproject.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hcz.cpdspringproject.pojo.Category;
 import com.hcz.cpdspringproject.pojo.Comment;
 import com.hcz.cpdspringproject.pojo.Travel;
+import com.hcz.cpdspringproject.pojo.User;
+import com.hcz.cpdspringproject.service.CategoryService;
 import com.hcz.cpdspringproject.service.CommentService;
 import com.hcz.cpdspringproject.service.TravelService;
 
@@ -20,6 +25,9 @@ import com.hcz.cpdspringproject.service.TravelService;
  */
 @Controller
 public class TravelController {
+
+    @Autowired
+    private CategoryService categoryService;
 
     @Autowired
     private TravelService travelService;
@@ -52,6 +60,8 @@ public class TravelController {
     @RequestMapping("/admin/add-travel-form")
     public String showAddTravelForm(Model model) {
         Travel travel = new Travel();
+        List<Category> allCategories = categoryService.getAllCategories();
+        model.addAttribute("allCategories", allCategories);
         model.addAttribute("travel", travel);
         return "admin/forms/travelForm";
     }
@@ -95,11 +105,13 @@ public class TravelController {
         }
     }
 
-    @RequestMapping(value = "/admin/travels", method = RequestMethod.POST)
-    public String adminInsertTravel(@ModelAttribute("travel") Travel travel) {
+    @RequestMapping(value = "/admin/travel", method = RequestMethod.POST)
+    public String adminInsertTravel(@ModelAttribute("travel") Travel travel, HttpSession session) {
+        User user = (User) session.getAttribute("authUser");
+        travel.setUser(user.getUserId());
         int insertTravel = travelService.addNewTravel(travel);
         if (insertTravel > 0) {
-            return "redirect:admin/all-travels";
+            return "redirect:/admin/all-travels";
         } else {
             return "error_400";
         }

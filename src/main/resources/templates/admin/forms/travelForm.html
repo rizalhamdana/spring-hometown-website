@@ -31,23 +31,20 @@
        					 <div class="col-md-12">
              				<div class="card">
                 				<div class="card-header card-header-primary">
-                  					<h4 class="card-title">
-                  						<p th:if="${editTravel != null }">Edit Travel Destination</p>
-                  						<p th:unless="${editTravel != null }">Add Travel Destination</p>
-                  					</h4>
+                  					<h4 class="card-title">Add Travel Destination</h4>
                   					<p class="card-category"></p>
                 				</div>
                					<div class="card-body">
-                					<form method="POST" action="" enctype="multipart/form-data">
+                					<form method="POST" action="#" enctype="multipart/form-data" th:object="${travel}" th:action="@{/admin/travel}">
                     					<div class="row">
                       						<div class="col-md-12">
                         						<div class="form-group">
                           							<label class="bmd-label-floating" >Title</label>
-                         							<input th:if="${editTravel != null }" type="text" name="title" class="form-control" value="${editTravel.title }"/>
+                         							<input type="text" name="title" class="form-control"/>
                         						</div>
                       						</div>
                     					</div>
-                    					<div class="row" style="margin-bottom: 50px;">
+                    					 <!-- <div class="row" style="margin-bottom: 50px;">
                       						<div class="col-md-2">
                         						<div class="form-group">
                           							<label th:if="${editTravel != null }" class="bmd-label-floating">
@@ -61,8 +58,8 @@
                       						<div class="col-md-4">
                         						<input th:if="${editTravel == null }" type="file" name="thumbnail" accept="image/*" multiple required />
                       						</div>	
-                    					</div>
-                    					<div th:if="${editTravel != null }">
+                    					</div> 
+                    					 <div th:if="${editTravel != null }">
                     						<div class="row" style="margin-bottom: 50px;">
                     							<div th:each="thumbnail : ${thumbnails }">
                     								<div class="col-md-2">
@@ -72,19 +69,14 @@
                       								</div>
                     							</div>
                       						</div>
-                      					</div>
-                    					
+                      					</div>  -->
                     					<div class="row">
                       						<div class="col-md-4">
                         						<div class="form-group">
                           							<label class="bmd-label-floating" name="title">Category</label>
                          							<select name="category" class="form-control">
-                         								<div th:each="category : ${allCategories }">
-                         									<option th:if="${category.category_id == editTravel.category.category_id}" value="${category.category_id }" selected="true"> 
-                         										${category.name }
-                         									</option>
-                         									<option th:unless="${category.category_id == editTravel.category.category_id}" value="${category.category_id }"> 
-                         										${category.name }
+                         								<div th:each="cat : ${allCategories}" >
+                         									<option th:text="${cat.name}" th:value="${cat.categoryId}"> 	
                          									</option>
                          								</c:forEach>
                          							</select>

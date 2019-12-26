@@ -12,7 +12,7 @@ public class GeneralUtils {
 
     public static ApplicationContext getContext() {
         if (APP_CONTEXT == null) {
-            APP_CONTEXT = new ClassPathXmlApplicationContext("beans_anno.xml");
+            APP_CONTEXT = new ClassPathXmlApplicationContext("beans.xml");
 
         }
         return APP_CONTEXT;

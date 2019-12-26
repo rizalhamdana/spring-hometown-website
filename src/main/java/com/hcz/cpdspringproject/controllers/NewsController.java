@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hcz.cpdspringproject.pojo.Category;
 
-// import org.springframework.web.multipart.MultipartFile;
-
 import com.hcz.cpdspringproject.pojo.News;
 import com.hcz.cpdspringproject.pojo.User;
 import com.hcz.cpdspringproject.service.NewsService;
@@ -71,26 +69,14 @@ public class NewsController {
     }
 
     @RequestMapping("/admin/edit-news-form")
-    public String showEditNewsForm(Model model, @RequestParam("travel_id") int newsId) {
+    public String showEditNewsForm(Model model, @RequestParam("news_id") int newsId) {
         News editNews = newsService.getNewsById(newsId);
         model.addAttribute("editNews", editNews);
-        return "admin/forms/newsForm";
-    }
-
-    @RequestMapping(value = "/admin/news", method = RequestMethod.GET)
-    public String adminDetailNews(@RequestParam("news_id") int newsId, Model model) {
-        News news = newsService.getNewsById(newsId);
-        if (news != null) {
-            model.addAttribute("news", news);
-            return "admin_update_news_form";
-        } else {
-            return "error_404";
-        }
+        return "admin/forms/newsFormEdit";
     }
 
     @RequestMapping(value = "/admin/news/update", method = RequestMethod.POST)
-    public String adminUpdateNews(@ModelAttribute("news") News news) {
-
+    public String adminUpdateNews(@ModelAttribute("editNews") News news) {
         int updateNews = newsService.updateNews(news);
         if (updateNews > 0) {
             return "redirect:/admin/all-news";

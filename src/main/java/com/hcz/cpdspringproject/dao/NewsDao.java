@@ -15,7 +15,7 @@ public class NewsDao {
     private static JdbcTemplate template = (JdbcTemplate) GeneralUtils.getContext().getBean("jdbcTemplate");
 
     public News getNewsById(final int newsId) {
-        final String sql = "select * from news join category on news.category = category.category_id order by news.news_id desc where news_id = ? ";
+        final String sql = "select * from news join category on news.category = category.category_id where news_id = ? order by news.news_id desc ";
         return template.queryForObject(sql, new NewsMapper(), newsId);
     }
 
@@ -32,7 +32,7 @@ public class NewsDao {
 
     public int updateNews(News news) {
         String sql = "update news set title = ?, contents = ?, thumbnail = ? where news_id = " + news.getNewsId();
-        return template.update(sql, news.getTitle(), news.getContents(), news.getThumbnail());
+        return template.update(sql, news.getTitle(), news.getContents(), "default.png");
     }
 
     public int deleteNewsById(int newsId) {

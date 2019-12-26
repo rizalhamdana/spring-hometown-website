@@ -29,7 +29,7 @@ public class CategoryDao {
 
     public List<Category> getAllCategories() {
         List<Category> allCategories = null;
-        String sql = "select * from category";
+        String sql = "select * from category where category_id != 1";
         allCategories = template.query(sql, new CategoryMapper());
         return allCategories;
     }

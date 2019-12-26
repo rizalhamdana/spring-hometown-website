@@ -81,7 +81,7 @@
                       						</div>
                     					</div>
                     					<p th:if="${editNews != null }">
-                    						<input type="hidden" name="news_id" value="${editNews.news_id}">
+                    						<input type="hidden" name="news_id" value="${editNews.newsId}" th:field="*{newsId}">
                     						<input type="hidden" name="thumbnailHidden" value="${editNews.thumbnail}">
                     					</p>
                     					

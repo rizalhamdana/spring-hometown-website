@@ -28,7 +28,7 @@ public class NewsService {
     }
 
     public int updateNews(News news) {
-        return new NewsDao().addNews(news);
+        return new NewsDao().updateNews(news);
     }
 
     public int deleteNews(int newsId) {
