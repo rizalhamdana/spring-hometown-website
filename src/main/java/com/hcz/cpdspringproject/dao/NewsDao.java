@@ -31,10 +31,8 @@ public class NewsDao {
     }
 
     public int updateNews(News news) {
-        String sql = "update news set title = ?, contents = ?, thumbnail = ?, date_created = ?, user = ?, category = ? where news_id = "
-                + news.getNewsId();
-        return template.update(sql, news.getTitle(), news.getContents(), news.getThumbnail(),
-                new java.sql.Date(news.getDateCreated().getTime()), news.getUser(), news.getCategory().getCategoryId());
+        String sql = "update news set title = ?, contents = ?, thumbnail = ? where news_id = " + news.getNewsId();
+        return template.update(sql, news.getTitle(), news.getContents(), news.getThumbnail());
     }
 
     public int deleteNewsById(int newsId) {
