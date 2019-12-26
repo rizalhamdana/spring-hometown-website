@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>
-		<div th:if="${post!=null }">${post.title}</div>
+		<div th:if="${news!=null }">${news.title}</div>
 	</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/home.css">
@@ -32,21 +32,18 @@
 					<div class="col-md-8 text-left" style="text-align: justify;">
 						<div class="container-fluid">
 							<h1 class="text-left" style="margin-bottom: 20px;">
-								<div th:if="${post!=null }">${post.title }</div>
+								<div th:if="${news!=null }">${news.title }</div>
 							</h1>
 							<br>
-							<div th:if="${post!=null }">
-								
+							<div th:if="${news!=null }">
 								<div th:each="thumbnail : ${thumbnails }">
 									<div class="mySlides">
 										<img src="uploads/${thumbnail }" class="img-responsive slide-img" style="width: 100%";>
 									</div>
 								</div>
-							
 							<div class="caption-container">
     							<p id="caption"></p>
   							</div>
-							
 							<a onclick="change_slides(-1)" class="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
 							<a onclick="change_slides(1)" class="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 							<div class="row container-fluid" style="margin-top: 5px;">
@@ -61,7 +58,7 @@
 							</div>
 							<br>
 							<div id="content_post">
-								<div th:if="${post!=null }">${post.contents }</div>
+								<div th:if="${news!=null }">${news.contents }</div>
 							</div>
 						</div>
 					</div>
@@ -72,18 +69,18 @@
 						</div>
 						<div class="container-fluid">
 							<div th:if="${recentNews != null }">
-							<div th:each="news : ${recentNews }">
+							<div th:each="r_news : ${recentNews }">
 							<div class="media">
 		  							<div class="media-left media-middle">
 		  								<!-- <a href="<%= Config.getBase_url()%>detailPost?id_news=${news.getNews_id()}"> -->
 		    							<a href="">
-		      								<img class="media-object" src="uploads/${news.thumbnail }" alt="" style="height: 48px;">
+		      								<img class="media-object" src="uploads/${r_news.thumbnail }" alt="" style="height: 48px;">
 		   								</a>
 		  							</div>
 		  							<div class="media-body">
 		    							<!-- <a href="<%= Config.getBase_url()%>detailPost?id_news=${news.getNews_id()}"> -->
 		    							<a href="">
-		    								<h4 class="media-heading">${news.title }</h4>
+		    								<h4 class="media-heading">${r_news.title }</h4>
 		    							</a>
 		  							</div>
 								</div>
@@ -93,60 +90,6 @@
 						</div>
 					</div>	
 				</div>
-					<div class="row">
-						<div class="col-md-8 text-left" style="text-align: justify;">
-							<div class="container-fluid">
-								<div th:if="${isTravel > 0}">
-									<div class="row">
-										<div class="col-md-6">
-											<h4>Likes: ${post.likes }</h4>
-										</div>
-										<div class="col-md-6">
-											<h4>Dislikes: ${post.dislikes }</h4>
-										</div>
-									</div>
-									<div th:if="${userLogin != null }">
-										<form method="post" action="addLikesAndDislikes">
-											<input type="hidden" name="id_travel" value="${post.travel_id }">
-											<input type="hidden" name="likeNumber" value="${post.likes }">
-											<input type="hidden" name="dislikeNumber" value="${post.dislikes }">
-											<input type="submit" name="like" value="Like" class="btn btn-primary">
-											<input type="submit" name="dislike" value="Dislike" class="btn btn-warning">
-										</form>
-									</div>
-									<h4>Comments</h4>
-									<br>
-									<label><h4><b>${userLogin.username }</b></h4>
-									</label>
-									<div th:if="${userLogin != null }">
-										<form method="post" action="addComment">
-											<div class="form-group">
-												<textarea rows="4" class="form-control" name="comment" placeholder="Comment"></textarea>
-											</div>
-											<div class="form-group">
-												<input type="submit" name="submit" value="Submit" class="btn btn-primary">
-											</div>
-											<input type="hidden" name="id_travel" value="${post.travel_id }" >
-										</form>
-									</div>
-								</div>
-								<br>
-								<div th:if="${post != null && isTravel > 0}">
-									<div th:if="comment : ${comments }">
-										<div class="comment-wrapper">
-											<h4><b>${comment.user.username }</b></h4>
-											<p>${comment.comment }</p>
-											<div th:if="${userLogin.user_id == comment.user.user_id}">
-												<!-- <a href="<%= Config.getBase_url()%>deleteComment?id_comment=${comment.getComment_id()}
-													&&id_travel=${comment.getTravel().getTravel_id()}" style="text-decoration: underline;">Delete</a> -->
-													<a href="" style="text-decoration: underline;">Delete</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		<th:block th:include="footer.html"></th:block>
