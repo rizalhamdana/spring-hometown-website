@@ -76,6 +76,12 @@ public class UserController {
         session.invalidate();
         return "redirect:/login";
     }
+    
+    // User Profile
+    @RequestMapping("/user-profile")
+    public String userProfile(Model model) {
+    	return "userProfile";
+    }
 
     // Admin User Dashboard
     @RequestMapping(value = "/admin/all-users")
