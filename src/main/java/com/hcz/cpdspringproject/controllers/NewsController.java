@@ -1,8 +1,13 @@
 package com.hcz.cpdspringproject.controllers;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hcz.cpdspringproject.pojo.Category;
+
+// import org.springframework.web.multipart.MultipartFile;
+
 import com.hcz.cpdspringproject.pojo.News;
+import com.hcz.cpdspringproject.pojo.User;
 import com.hcz.cpdspringproject.service.NewsService;
 
 /**
@@ -19,6 +29,7 @@ import com.hcz.cpdspringproject.service.NewsService;
  */
 @Controller
 public class NewsController {
+
     @Autowired
     NewsService newsService;
 
@@ -51,10 +62,18 @@ public class NewsController {
         }
     }
 
-    @RequestMapping("/admin/add-news")
+    @RequestMapping("/admin/add-news-form")
     public String showAddNewsForm(Model model) {
         News news = new News();
+        news.setTitle("test");
         model.addAttribute("news", news);
+        return "admin/forms/newsForm";
+    }
+
+    @RequestMapping("/admin/edit-news-form")
+    public String showEditNewsForm(Model model, @RequestParam("travel_id") int newsId) {
+        News editNews = newsService.getNewsById(newsId);
+        model.addAttribute("editNews", editNews);
         return "admin/forms/newsForm";
     }
 
@@ -69,8 +88,9 @@ public class NewsController {
         }
     }
 
-    @RequestMapping(value = "/admin/news/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/admin/news/update", method = RequestMethod.POST)
     public String adminUpdateNews(@ModelAttribute("news") News news) {
+
         int updateNews = newsService.updateNews(news);
         if (updateNews > 0) {
             return "redirect:/admin/all-news";
@@ -80,10 +100,19 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/admin/news", method = RequestMethod.POST)
-    public String adminInsertNews(@ModelAttribute("news") News news) {
+    public String adminInsertNews(@ModelAttribute("news") News news, HttpServletRequest request) {
+        System.out.println(news.getTitle());
+        String thumbnail = "default.png";
+        news.setThumbnail(thumbnail);
+        news.setCategory(new Category(1, "News"));
+        news.setDateCreated(new Date());
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("authUser");
+        System.out.println(news.getContents());
+        news.setUser(user.getUserId());
         int insertNews = newsService.addNews(news);
         if (insertNews > 0) {
-            return "redirect:admin/news";
+            return "redirect:/admin/all-news";
         } else {
             return "error_400";
         }
@@ -98,4 +127,5 @@ public class NewsController {
             return "error_400";
         }
     }
+
 }

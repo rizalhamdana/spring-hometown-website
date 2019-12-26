@@ -1,5 +1,7 @@
 package com.hcz.cpdspringproject.service;
 
+import java.util.List;
+
 import com.hcz.cpdspringproject.dao.CommentDao;
 import com.hcz.cpdspringproject.pojo.Comment;
 
@@ -19,6 +21,10 @@ public class CommentService {
 
     public int deleteComment(int commentId) {
         return new CommentDao().deleteCommentById(commentId);
+    }
+
+    public List<Comment> getCommentsOnTravel(int travelId) {
+        return new CommentDao().getTravelComments(travelId);
     }
 
 }
