@@ -29,16 +29,16 @@
 					<div class="col-md-3 thumbnail">
 						<!-- <img src="uploads/${travel.getThumbnail()}" class="img-responsive image-news-wonders-2"> -->
 						<!-- <a href="<%= Config.getBase_url()%>detailPost?id_travel=${travel.getTravel_id()}"> -->
-						<a href="">
+						<a href="/travels/details(travel_id=${travel.travelId})">
 							<h4>
 								<p th:text="${travel.title}"></p>
 							</h4>
 						</a>
 						<div th:if="${travel.contents.length() >= 100}">
-							<p th:text="${travel.contents.substring(0,100) }">...</p>
+							<p th:utext="${travel.contents.substring(0,100) }">...</p>
 						</div>
 						<div th:unless="${travel.contents.length() >= 100}">
-                            <p th:text="${travel.contents.substring(0,travel.contents.length()) }">...</p>
+                            <p th:utext="${travel.contents.substring(0,travel.contents.length()) }">...</p>
                         </div>
                     </div>
 				</div>

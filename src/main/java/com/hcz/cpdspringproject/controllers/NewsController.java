@@ -45,7 +45,7 @@ public class NewsController {
         News news = newsService.getNewsById(newsId);
         if (news != null) {
             model.addAttribute("news", news);
-            return "news_detail";
+            return "newsDetail";
         } else {
             return "error_404";
         }

@@ -29,10 +29,10 @@
 							</h4>
 						</a>
 						<div th:if="${news.contents.length() >= 100}">
-							<p th:text="${news.contents.substring(0,100) }">...</p>
+							<p th:utext="${news.contents.substring(0,100) }">...</p>
 						</div>
 						<div th:unless="${news.contents.length() >= 100}">
-                            <p th:text="${news.contents.substring(0,news.contents.length()) }">...</p>
+                            <p th:utext="${news.contents.substring(0,news.contents.length()) }">...</p>
                         </div>
 					</div>
 				</div>

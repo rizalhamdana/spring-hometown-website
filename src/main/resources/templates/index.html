@@ -75,10 +75,10 @@
 							
 						</a>
 						<div th:if="${news.getContents().length() >= 100}">
-							<p th:text="${news.getContents().substring(0,100) }">...</p>
+							<p th:utext="${news.getContents().substring(0,100) }">...</p>
                         </div>
                         <div th:unless="${news.getContents().length() >= 100}">
-                            <p th:text="${news.getContents().substring(0,news.contents.length()) }">...</p>
+                            <p th:utext="${news.getContents().substring(0,news.contents.length()) }">...</p>
                         </div>
 		
 					</div>

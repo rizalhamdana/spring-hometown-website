@@ -43,7 +43,7 @@ public class TravelController {
             if (comments.size() > 0) {
                 model.addAttribute("comments", comments);
             }
-            return "travel_detail";
+            return "travelDetail";
         } else {
             return "error_404";
         }
