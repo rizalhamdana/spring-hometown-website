@@ -1,11 +1,9 @@
 package com.hcz.cpdspringproject.service;
 
-import java.util.HashMap;
 import java.util.List;
 
-import com.hcz.cpdspringproject.dao.CommentDao;
 import com.hcz.cpdspringproject.dao.TravelDao;
-import com.hcz.cpdspringproject.pojo.Comment;
+
 import com.hcz.cpdspringproject.pojo.Travel;
 
 import org.springframework.stereotype.Service;
@@ -22,13 +20,9 @@ public class TravelService {
         return new TravelDao().getAllTravels();
     }
 
-    public HashMap<String, Object> getTravelById(int travelId) {
+    public Travel getTravelById(int travelId) {
         Travel travel = new TravelDao().getTravelById(travelId);
-        List<Comment> comments = new CommentDao().getTravelComments(travelId);
-        HashMap<String, Object> results = new HashMap<String, Object>();
-        results.put("comments", comments);
-        results.put("travel", travel);
-        return results;
+        return travel;
     }
 
     public int addNewTravel(Travel travel) {

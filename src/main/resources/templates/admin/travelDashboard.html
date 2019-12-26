@@ -23,8 +23,8 @@
             			<div class="col-md-12">
               				<div class="card">
                 				<div class="card-header card-header-primary">
-                  					<h4 class="card-title ">News</h4>
-                  					<p class="card-category"> Here is some list of news</p>
+                  					<h4 class="card-title ">Travels</h4>
+                  					<p class="card-category"> Here is some list of travel posts</p>
                 				</div>
                 				<div class="card-body">
                  					 <div class="table-responsive">
@@ -38,11 +38,11 @@
                       							</tr>  
                       						</thead>
                       						<tbody>
-                      						<div th:each="news : ${allNews }">
+                      						<div th:each="travel : ${allTravels }">
                       							<tr>
-                         							<td><a href="">${news.title }</a></td>
-                         							<td>${news.date_created }</td>
-                         							<td>${news.category.name }</td>
+                         							<td><a href="">${travel.title }</a></td>
+                         							<td>${travel.date_created }</td>
+                         							<td>${travel.category.name }</td>
                          							<td>
                          								<a href="" class="btn btn-primary btn-link btn-sm">
                          									<i class="material-icons">
@@ -58,32 +58,13 @@
                          							</td>
                         						</tr>
                       						</div>
-                      						<!-- <c:forEach var="news" items="${allNews }">
-                      							<tr>
-                         							<td><a href="<%=Config.getBase_url()%>detailPost?id_news=${news.getNews_id()}">${news.getTitle() }</a></td>
-                         							<td>${news.getDate_created() }</td>
-                         							<td>${news.getCategory().getName() }</td>
-                         							<td>
-                         								<a href="<%=Config.getBase_url()%>editNews?id_news=${news.getNews_id()}" class="btn btn-primary btn-link btn-sm">
-                         									<i class="material-icons">
-																edit
-															</i>
-                         								</a>
-                         								<a href="<%=Config.getBase_url()%>deleteNews?id_news=${news.getNews_id()}" class="btn btn-danger btn-link btn-sm">
-                         									<i class="material-icons">
-																delete
-															</i>
-														</a>
-                         								
-                         							</td>
-                        						</tr>
-                      						</c:forEach> -->
+                      						
                       						</tbody>
                     					</table>
-                    					<a href="/newsForm" class="btn btn-primary btn-link btn-lg">
+                    					<a href="/admin/add-travel-form" class="btn btn-primary btn-link btn-lg">
                     						<i class="material-icons">
 												add_box
-											</i> <strong>News</Strong>
+											</i> <strong>Travel</Strong>
                     					</a>
                   					</div>
                 				</div>

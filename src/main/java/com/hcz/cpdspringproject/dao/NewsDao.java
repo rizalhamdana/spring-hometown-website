@@ -25,9 +25,9 @@ public class NewsDao {
     }
 
     public int addNews(News news) {
-        String sql = "insert into news values(null, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into news values(0, ?, ?, ?, ?, ?, ?)";
         return template.update(sql, news.getTitle(), news.getContents(), news.getThumbnail(),
-                new java.sql.Date(news.getDateCreated().getTime()), news.getUser(), news.getCategory().getCategoryId());
+                new java.sql.Date(news.getDateCreated().getTime()), news.getUser(), 1);
     }
 
     public int updateNews(News news) {
