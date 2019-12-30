@@ -64,11 +64,8 @@ public class UserDao {
     }
 
     public int updateUser(User user) {
-        String sql = "update user set username=?, first_name=?, last_name=?, password=?, email=?, status=?, profile_pic=? where user_id = "
-                + user.getUserId();
-        int isSuccess = template.update(sql, user.getUsername(), user.getFirstName(), user.getLastName(),
-                user.getPassword(), user.getEmail(), user.getStatus(), user.getProfilePic());
+        String sql = "update user set username=?, first_name=?, last_name=? where user_id = " + user.getUserId();
+        int isSuccess = template.update(sql, user.getUsername(), user.getFirstName(), user.getLastName());
         return isSuccess;
     }
-
 }

@@ -93,4 +93,17 @@ public class UserController {
         model.addAttribute("allUsers", allUsers);
         return "admin/usersDashboard";
     }
+
+    @RequestMapping(value = "/user-profile/update", method = RequestMethod.POST)
+    public String updateUser(Model model, @ModelAttribute("user") User user, HttpSession session) {
+        int updateUser = userService.updateDataUser(user);
+        if (updateUser > 0) {
+            User userup = userService.getUser(user.getUsername());
+            model.addAttribute("user", userup);
+            session.setAttribute("authUser", userup);
+            return "redirect:/user-profile?username=" + userup.getUsername();
+        } else {
+            return "redirect:/";
+        }
+    }
 }
