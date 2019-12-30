@@ -3,8 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>
-		<div th:if="${editTravel != null }">Edit Travel</div>
-		<div th:unless="${editTravel == null }">Add Travel</div>
+		Add Travel
 	</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
  	<!-- CSS Files -->
@@ -35,12 +34,12 @@
                   					<p class="card-category"></p>
                 				</div>
                					<div class="card-body">
-                					<form method="POST" action="#" enctype="multipart/form-data" th:object="${travel}" th:action="@{/admin/travel}">
+                					<form method="post" action="#" th:action="@{/admin/travel/}" th:object="${travel}" >
                     					<div class="row">
                       						<div class="col-md-12">
                         						<div class="form-group">
                           							<label class="bmd-label-floating" >Title</label>
-                         							<input type="text" name="title" class="form-control"/>
+                         							<input type="text" name="title" th:field="*{title}" class="form-control" value="${travel.title}" required/>
                         						</div>
                       						</div>
                     					</div>
@@ -88,7 +87,7 @@
                         						<div class="form-group">
                           							<label>Contents</label>
                           							<div class="form-group">
-                            							<textarea class="form-control" rows="20" id="editor" name="contents">
+                            							<textarea class="form-control" rows="20" id="editor" name="contents" th:field="*{contents}">
                             								<p th:if="${editTravel != null }">${editTravel.contents}</p>
                             							</textarea>
                           							</div>

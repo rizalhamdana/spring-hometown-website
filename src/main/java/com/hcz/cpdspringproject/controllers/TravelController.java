@@ -37,17 +37,17 @@ public class TravelController {
     private CommentService commentService;
 
     @RequestMapping("/travels")
-    public String index(Model model) {
-        List<Travel> allTravels = travelService.getAllTravels();
+    public String index(final Model model) {
+        final List<Travel> allTravels = travelService.getAllTravels();
         model.addAttribute("allTravels", allTravels);
         return "travel";
     }
 
     @RequestMapping("/travels/details")
-    public String travelDetail(@RequestParam("travel_id") int travelId, Model model) {
-        Travel travel = travelService.getTravelById(travelId);
-        Comment newComment = new Comment();
-        List<Comment> comments = commentService.getCommentsOnTravel(travelId);
+    public String travelDetail(@RequestParam("travel_id") final int travelId, final Model model) {
+        final Travel travel = travelService.getTravelById(travelId);
+        final Comment newComment = new Comment();
+        final List<Comment> comments = commentService.getCommentsOnTravel(travelId);
         if (travel != null) {
             model.addAttribute("newComment", newComment);
             model.addAttribute("travel", travel);
@@ -61,26 +61,26 @@ public class TravelController {
     }
 
     @RequestMapping("/admin/add-travel-form")
-    public String showAddTravelForm(Model model) {
-        Travel travel = new Travel();
-        List<Category> allCategories = categoryService.getAllCategories();
+    public String showAddTravelForm(final Model model) {
+        final Travel travel = new Travel();
+        final List<Category> allCategories = categoryService.getAllCategories();
         model.addAttribute("allCategories", allCategories);
         model.addAttribute("travel", travel);
         return "admin/forms/travelForm";
     }
 
     @RequestMapping("/admin/edit-travel-form")
-    public String showEditTravelForm(Model model, @RequestParam("travel_id") int travelId) {
-        List<Category> allCategories = categoryService.getAllCategories();
-        Travel editTravel = travelService.getTravelById(travelId);
+    public String showEditTravelForm(final Model model, @RequestParam("travel_id") final int travelId) {
+        final List<Category> allCategories = categoryService.getAllCategories();
+        final Travel editTravel = travelService.getTravelById(travelId);
         model.addAttribute("editTravel", editTravel);
         model.addAttribute("allCategories", allCategories);
         return "admin/forms/travelFormEdit";
     }
 
     @RequestMapping("/admin/all-travels")
-    public String adminGetAllTravels(Model model) {
-        List<Travel> allTravels = travelService.getAllTravels();
+    public String adminGetAllTravels(final Model model) {
+        final List<Travel> allTravels = travelService.getAllTravels();
         if (allTravels != null) {
             model.addAttribute("allTravels", allTravels);
             return "admin/travelDashboard";
@@ -90,8 +90,8 @@ public class TravelController {
     }
 
     @RequestMapping(value = "/admin/travel", method = RequestMethod.GET)
-    public String adminDetailTravel(@RequestParam("news_id") int travelId, Model model) {
-        Travel travel = travelService.getTravelById(travelId);
+    public String adminDetailTravel(@RequestParam("news_id") final int travelId, final Model model) {
+        final Travel travel = travelService.getTravelById(travelId);
         if (travel != null) {
             model.addAttribute("news", travel);
             return "admin_update_news_form";
@@ -101,13 +101,13 @@ public class TravelController {
     }
 
     @RequestMapping(value = "/admin/travels/update", method = RequestMethod.POST)
-    public String adminUpdateTravel(@ModelAttribute("travel") Travel travel,
-            @RequestParam("categoryId") int categoryId) {
+    public String adminUpdateTravel(@ModelAttribute("travel") final Travel travel,
+            @RequestParam("categoryId") final int categoryId) {
 
-        Category category = categoryService.getCategoryById(categoryId);
+        final Category category = categoryService.getCategoryById(categoryId);
         travel.setCategory(category);
 
-        int updateTravel = travelService.updateTravel(travel);
+        final int updateTravel = travelService.updateTravel(travel);
         if (updateTravel > 0) {
             return "redirect:/admin/all-travels";
         } else {
@@ -116,14 +116,14 @@ public class TravelController {
     }
 
     @RequestMapping(value = "/admin/travel", method = RequestMethod.POST)
-    public String adminInsertTravel(@ModelAttribute("travel") Travel travel, HttpSession session,
-            HttpServletRequest request) {
-        int categoryId = Integer.parseInt(request.getParameter("categoryId").toString());
-        Category category = categoryService.getCategoryById(categoryId);
-        User user = (User) session.getAttribute("authUser");
+    public String adminInsertTravel(@ModelAttribute("travel") final Travel travel, final HttpSession session,
+            final HttpServletRequest request) {
+        final int categoryId = Integer.parseInt(request.getParameter("categoryId").toString());
+        final Category category = categoryService.getCategoryById(categoryId);
+        final User user = (User) session.getAttribute("authUser");
         travel.setUser(user.getUserId());
         travel.setCategory(category);
-        int insertTravel = travelService.addNewTravel(travel);
+        final int insertTravel = travelService.addNewTravel(travel);
         if (insertTravel > 0) {
             return "redirect:/admin/all-travels";
         } else {
@@ -132,8 +132,8 @@ public class TravelController {
     }
 
     @RequestMapping(value = "/admin/travels/delete", method = RequestMethod.GET)
-    public String adminDeleteTravel(@RequestParam("travel_id") int travelId) {
-        int deletedTravel = travelService.deleteTravel(travelId);
+    public String adminDeleteTravel(@RequestParam("travel_id") final int travelId) {
+        final int deletedTravel = travelService.deleteTravel(travelId);
         if (deletedTravel > 0) {
             return "redirect:/admin/all-travels";
         } else {
