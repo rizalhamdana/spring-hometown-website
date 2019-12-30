@@ -2,9 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>
-		<div th:if="${editTravel != null }">Edit Travel</div>
-		<div th:unless="${editTravel == null }">Add Travel</div>
+	<title>Edit Travel		
 	</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
  	<!-- CSS Files -->
@@ -31,16 +29,16 @@
        					 <div class="col-md-12">
              				<div class="card">
                 				<div class="card-header card-header-primary">
-                  					<h4 class="card-title">Add Travel Destination</h4>
+                  					<h4 class="card-title">Edit Travel Destination</h4>
                   					<p class="card-category"></p>
                 				</div>
                					<div class="card-body">
-                					<form method="POST" action="#" enctype="multipart/form-data" th:object="${travel}" th:action="@{/admin/travel}">
+                					<form method="POST" action="#" enctype="multipart/form-data" th:object="${editTravel}" th:action="@{/admin/travels/update/}">
                     					<div class="row">
                       						<div class="col-md-12">
                         						<div class="form-group">
                           							<label class="bmd-label-floating" >Title</label>
-                         							<input type="text" name="title" class="form-control"/>
+                         							<input type="text" name="title" class="form-control" th:field="*{title}" th:value="${editTravel.title}"/>
                         						</div>
                       						</div>
                     					</div>
@@ -76,8 +74,14 @@
                           							<label class="bmd-label-floating" name="title">Category</label>
                          							<select name="categoryId" class="form-control">
                          								<div th:each="cat : ${allCategories}" >
-                         									<option th:text="${cat.name}" th:value="${cat.categoryId}"> 	
-                         									</option>
+														 	<div th:if="${cat.categoryId == editTravel.category.categoryId}">
+                         										<option th:text="${cat.name}" th:value="${cat.categoryId}" selected> 	
+                         										</option>
+															</div>
+															<div th:unless="${cat.categoryId == editTravel.category.categoryId}">
+                         										<option th:text="${cat.name}" th:value="${cat.categoryId}"> 	
+                         										</option>
+															</div>
                          								</c:forEach>
                          							</select>
                         						</div>
@@ -87,19 +91,20 @@
                       						<div class="col-md-12">
                         						<div class="form-group">
                           							<label>Contents</label>
-                          							<div class="form-group">
-                            							<textarea class="form-control" rows="20" id="editor" name="contents">
-                            								<p th:if="${editTravel != null }">${editTravel.contents}</p>
+                          							<div class="form-group" >
+                            							<textarea class="form-control" rows="20" id="editor" name="contents" th:if="${editTravel != null }">
+                            								<span th:text="${editTravel.contents}"></span>
                             							</textarea>
                           							</div>
                         						</div>
                       						</div>
                     					</div>
                     					<div th:if="${editTravel != null }">
-                    						<input type="hidden" name="travel_id" th:value="${editTravel.travelId}">
-                    						<input type="hidden" name="likes" th:value="${editTravel.likes}">
-                    						<input type="hidden" name="dislikes" th:value="${editTravel.dislikes}">
-                    						<input type="hidden" name="thumbnailHidden" th:value="${editTravel.thumbnail}">
+                    						<input type="hidden" name="travelId" value="${editTravel.travelId}" th:field="*{travelId}">
+											<input type="hidden" name="user" value="${editTravel.user}" th:field="*{user}">
+                    						<input type="hidden" name="likes" value="${editTravel.likes}" th:field="*{likes}">
+                    						<input type="hidden" name="dislikes" value="${editTravel.dislikes}" th:field="*{dislikes}">
+                    						<input type="hidden" name="thumbnailHidden" value="${editTravel.thumbnail}">
                     					</div>
                     					
                     					<button type="submit" class="btn btn-primary pull-right">Post</button> &nbsp

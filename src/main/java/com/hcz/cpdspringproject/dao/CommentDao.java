@@ -24,7 +24,7 @@ public class CommentDao {
 
     public List<Comment> getTravelComments(int travelId) {
         List<Comment> comment = null;
-        String sql = "select * from comment where travel_id = ? join user on user.user_id = comment.user_id";
+        String sql = "select * from comment join user on user.user_id = comment.user_id where travel_id = ?";
         comment = template.query(sql, new CommentMapper(), travelId);
         return comment;
     }

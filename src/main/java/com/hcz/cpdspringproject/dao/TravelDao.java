@@ -16,7 +16,7 @@ public class TravelDao {
     private static JdbcTemplate template = (JdbcTemplate) GeneralUtils.getContext().getBean("jdbcTemplate");
 
     public Travel getTravelById(final int travelId) {
-        final String sql = "select * from travel join category on travel.category = category.category_id order by travel.travel_id desc where travel_id = ? ";
+        final String sql = "select * from travel join category on travel.category = category.category_id where travel_id = ? order by travel.travel_id desc ";
         return template.queryForObject(sql, new TravelMapper(), travelId);
     }
 
@@ -28,14 +28,14 @@ public class TravelDao {
     public int addTravel(Travel travel) {
         String sql = "insert into travel values(null, ?, ?, ?, ?, ?, ?, ?)";
         return template.update(sql, travel.getTitle(), travel.getContents(), travel.getThumbnail(), travel.getUser(), 0,
-                0, travel.getCategory());
+                0, travel.getCategory().getCategoryId());
     }
 
     public int updateTravel(Travel travel) {
-        String sql = "update travel set title = ?, contents = ?, thumbnail = ?, date_created = ?, user = ?, category = ? where travel_id = "
+        String sql = "update travel set title=?, contents=?, thumbnail=?, user=?, category=? where travel_id = "
                 + travel.getTravelId();
         return template.update(sql, travel.getTitle(), travel.getContents(), travel.getThumbnail(), travel.getUser(),
-                travel.getCategory());
+                travel.getCategory().getCategoryId());
     }
 
     public int likeOrDislike(String column, int numberOfLikesOrDislikes, int travelId) {

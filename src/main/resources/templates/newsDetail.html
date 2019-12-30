@@ -5,10 +5,10 @@
 	<title>
 		<div th:if="${news!=null }">${news.title}</div>
 	</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/home.css">
-	<link rel="stylesheet" type="text/css" href="css/travel.css">
-	<link rel="stylesheet" type= "text/css" href="css/profil.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/travel.css}">
+	<link rel="stylesheet" type= "text/css" th:href="@{/css/profil.css}">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <style>
@@ -26,39 +26,37 @@
 	<div class="row">
 	<th:block th:include="navbar.html">
     </th:block>
-		<div id="welcome-message" style="" class="section">
+		<div id="welcome-message" class="section">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 text-left" style="text-align: justify;">
-						<div class="container-fluid">
-							<h1 class="text-left" style="margin-bottom: 20px;">
-								<div th:if="${news!=null }">${news.title }</div>
-							</h1>
+						<div class="container-fluid" th:if="${news!=null }" >
+							<h1 class="text-left" style="margin-bottom: 20px;" th:text="${news.title}"></h1>
 							<br>
-							<div th:if="${news!=null }">
+							<!-- <div th:if="${news!=null }">
 								<div th:each="thumbnail : ${thumbnails }">
 									<div class="mySlides">
 										<img src="uploads/${thumbnail }" class="img-responsive slide-img" style="width: 100%";>
 									</div>
 								</div>
-							<div class="caption-container">
-    							<p id="caption"></p>
-  							</div>
-							<a onclick="change_slides(-1)" class="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-							<a onclick="change_slides(1)" class="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-							<div class="row container-fluid" style="margin-top: 5px;">
-							<!-- <c:set var="counter" value="1" scope="page"></c:set> -->
-								<div th:each="thumbnail : ${thumbnails }">
-									<div class="col-md-2 column">
-										<img src="uploads/${thumbnail }" class="img-responsive slide_control" style="width: 100%"; onclick='current_slides("${counter}")' alt="Image">
-										<c:set var="counter" value="${counter+1 }" scope="page"></c:set>
+								<div class="caption-container">
+    								<p id="caption"></p>
+  								</div>
+								<a onclick="change_slides(-1)" class="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+								<a onclick="change_slides(1)" class="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+								<div class="row container-fluid" style="margin-top: 5px;">
+							
+									<div th:each="thumbnail : ${thumbnails }">
+										<div class="col-md-2 column">
+											<img src="uploads/${thumbnail }" class="img-responsive slide_control" style="width: 100%"; onclick='current_slides("${counter}")' alt="Image">
+											<c:set var="counter" value="${counter+1 }" scope="page"></c:set>
+										</div>
 									</div>
 								</div>
-							</div>
-							</div>
+							</div> -->
 							<br>
-							<div id="content_post">
-								<div th:if="${news!=null }">${news.contents }</div>
+							<div id="content_post" th:if="${news!=null }">
+								<div th:utext="${news.contents }"></div>
 							</div>
 						</div>
 					</div>
@@ -95,8 +93,8 @@
 		<th:block th:include="footer.html"></th:block>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="<%=Config.getBase_url()+"js/bootstrap.js" %>"></script>
-		<script type="text/javascript" src="<%=Config.getBase_url()+"js/slides.js" %>"></script>
+		<script type="text/javascript" src="@{/js/bootstrap.js}"></script>
+		<script type="text/javascript" src="@{/js/slides.js}"></script>
 	</div>
 </body>
 </html>

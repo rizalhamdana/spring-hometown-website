@@ -40,7 +40,7 @@
                       						<tbody>
                       						<div th:each="news : ${allNews}">
                       							<tr>
-                         							<td><a href="" th:text="${news.title }"></a></td>
+                         							<td><a th:href="@{/news/details(news_id=${news.newsId})}" th:text="${news.title }"></a></td>
                          							<td th:text="${news.dateCreated }"></td>
 													 <td th:text="${news.category.name }">${news.category.name }</td>
 													<td>

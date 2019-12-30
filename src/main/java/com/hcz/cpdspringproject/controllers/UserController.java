@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * UserController
@@ -79,7 +80,9 @@ public class UserController {
 
     // User Profile
     @RequestMapping("/user-profile")
-    public String userProfile(Model model) {
+    public String userProfile(Model model, @RequestParam("username") String username) {
+        User user = userService.getUser(username);
+        model.addAttribute("user", user);
         return "userProfile";
     }
 

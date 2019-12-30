@@ -29,7 +29,7 @@
 					<div class="col-md-3 thumbnail">
 						<!-- <img src="uploads/${travel.getThumbnail()}" class="img-responsive image-news-wonders-2"> -->
 						<!-- <a href="<%= Config.getBase_url()%>detailPost?id_travel=${travel.getTravel_id()}"> -->
-						<a href="/travels/details(travel_id=${travel.travelId})">
+						<a th:href="@{/travels/details(travel_id=${travel.travelId})}">
 							<h4>
 								<p th:text="${travel.title}"></p>
 							</h4>

@@ -65,8 +65,8 @@
 	<section class="col-md-12 section" id="news_events" style="margin-left: 40px;">
 		<div class="container">
 			<h2 class="text-left">News & Events</h2>
-			<div th:each="news : ${currentNews}" class="row thumbnails" style="margin-top: 20px; padding-left: 5px;">
-					<div class="col-md-3 col-sm-6 col-xs-4 thumbnail">
+			<div  class="row thumbnails" style="margin-top: 20px; padding-left: 5px;">
+					<div class="col-md-3 col-sm-6 col-xs-4 thumbnail" th:each="news : ${currentNews}">
 						<img th:src="@{uploads/} + ${news.thumbnail}" class="img-responsive image-news-wonders-2">
 						<a th:href="@{/news/details(news_id=${news.newsId})}">
 							<h4>

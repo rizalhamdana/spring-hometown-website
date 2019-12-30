@@ -27,6 +27,10 @@ public class UserService {
         return new UserDao().getUserById(userId);
     }
 
+    public User getUser(String username) {
+        return new UserDao().getUserByUsername(username);
+    }
+
     public int registerNewUser(User user) {
         UserDao dao = new UserDao();
         User userFind = dao.getUserByUsername(user.getUsername());

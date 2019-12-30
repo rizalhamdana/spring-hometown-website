@@ -45,22 +45,10 @@ public class AppController {
         model.addAttribute("numTravels", numberOfTravels);
         return "admin/index";
     }
-    
+
     @RequestMapping("/about")
     public String about(Model model) {
         return "about";
     }
-    
-    @RequestMapping("/detail-posts")
-    public String detailPosts(Model model) {
-        return "detailPosts";
-    }
-    
-    
-    
-    // @RequestMapping("/travelForm")
-    // public String showTravelForm(Model model) {
-    // return "admin/forms/travelForm";
-    // }
 
 }

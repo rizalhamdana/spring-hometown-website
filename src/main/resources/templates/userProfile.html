@@ -3,9 +3,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>My Profile</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/home.css">
-	<link rel="stylesheet" type= "text/css" href="css/profil.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
+	<link rel="stylesheet" type= "text/css" th:href="@{/css/profil.css}">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <style>
@@ -22,30 +22,29 @@
 <body style="overflow-x: hidden;">
 	<div class="row">
 	<th:block th:include="navbar.html"></th:block>
-		<div id="welcome-message" style="" class="section">
+		<div id="welcome-message"class="section">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 col-md-offset-1 text-center" style="text-align: center;">
 						<div class="container-fluid">
-							<div class="row">
+							<!-- <div class="row">
 								<br>
 								<div class="col-md-6">
 									<img src="uploads/${userData.profilePic }" class="img-circle"
 										alt="My Profile Photo" width="236" height="236">
 								</div>
-							</div>
+							</div> -->
 							<div class="row">
 								<div class="col-md-6">
-									<h3>${userData.first_name }&nbsp
-										${userData.last_name }</h3>
-									<h5>${userData.username }</h5>
+									<h3 th:text="${user.firstName} + ' ' + ${user.lastName}"></h3>
+									<h5 th:text="${user.username }"></h5>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- <div th:if='${permitedToEdit.equalsIgnoreCase("YES") }'> -->
 					<div>
-						<div class="col-md-5 "
+						<div class="col-md-5 " th:if="${session.authUser != null && session.authUser.userId == user.userId}"
 							style="border: 1px solid #c2c2c2; padding-top: -10px; margin-top: 30px; padding-bottom: 30px;">
 							<div
 								style="background-color: #FC9DA0; margin: 0 -15px; margin-bottom: 5px; padding-top: 10px;">
@@ -129,7 +128,7 @@
 			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 			crossorigin="anonymous"></script>
 		<script type="text/javascript"
-			src="<%=Config.getBase_url() + "js/bootstrap.js"%>"></script>
+			th:src="@{/js/bootstrap.js}"></script>
 	</div>
 </body>
 </html>

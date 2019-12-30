@@ -2,6 +2,7 @@ package com.hcz.cpdspringproject.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,10 @@ public class TravelController {
     @RequestMapping("/travels/details")
     public String travelDetail(@RequestParam("travel_id") int travelId, Model model) {
         Travel travel = travelService.getTravelById(travelId);
+        Comment newComment = new Comment();
         List<Comment> comments = commentService.getCommentsOnTravel(travelId);
         if (travel != null) {
+            model.addAttribute("newComment", newComment);
             model.addAttribute("travel", travel);
             if (comments.size() > 0) {
                 model.addAttribute("comments", comments);
@@ -68,9 +71,11 @@ public class TravelController {
 
     @RequestMapping("/admin/edit-travel-form")
     public String showEditTravelForm(Model model, @RequestParam("travel_id") int travelId) {
+        List<Category> allCategories = categoryService.getAllCategories();
         Travel editTravel = travelService.getTravelById(travelId);
         model.addAttribute("editTravel", editTravel);
-        return "admin/forms/travelForm";
+        model.addAttribute("allCategories", allCategories);
+        return "admin/forms/travelFormEdit";
     }
 
     @RequestMapping("/admin/all-travels")
@@ -96,7 +101,12 @@ public class TravelController {
     }
 
     @RequestMapping(value = "/admin/travels/update", method = RequestMethod.POST)
-    public String adminUpdateTravel(@ModelAttribute("travel") Travel travel) {
+    public String adminUpdateTravel(@ModelAttribute("travel") Travel travel,
+            @RequestParam("categoryId") int categoryId) {
+
+        Category category = categoryService.getCategoryById(categoryId);
+        travel.setCategory(category);
+
         int updateTravel = travelService.updateTravel(travel);
         if (updateTravel > 0) {
             return "redirect:/admin/all-travels";
@@ -106,9 +116,13 @@ public class TravelController {
     }
 
     @RequestMapping(value = "/admin/travel", method = RequestMethod.POST)
-    public String adminInsertTravel(@ModelAttribute("travel") Travel travel, HttpSession session) {
+    public String adminInsertTravel(@ModelAttribute("travel") Travel travel, HttpSession session,
+            HttpServletRequest request) {
+        int categoryId = Integer.parseInt(request.getParameter("categoryId").toString());
+        Category category = categoryService.getCategoryById(categoryId);
         User user = (User) session.getAttribute("authUser");
         travel.setUser(user.getUserId());
+        travel.setCategory(category);
         int insertTravel = travelService.addNewTravel(travel);
         if (insertTravel > 0) {
             return "redirect:/admin/all-travels";

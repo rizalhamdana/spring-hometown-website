@@ -39,16 +39,16 @@
                       						<tbody>
                       						<div th:each="travel : ${allTravels }">
                       							<tr>
-                         							<td><a href="" th:text="${travel.title }"></a></td>
+                         							<td><a th:href="@{/travels/details(travel_id=${travel.travelId})}" th:text="${travel.title }"></a></td>
                          				
                          							<td th:text="${travel.category.name }"></td>
                          							<td>
-                         								<a href="" class="btn btn-primary btn-link btn-sm">
+                         								<a th:href="@{/admin/edit-travel-form(travel_id=${travel.travelId})}" class="btn btn-primary btn-link btn-sm">
                          									<i class="material-icons">
 																edit
 															</i>
                          								</a>
-                         								<a href="" class="btn btn-danger btn-link btn-sm">
+                         								<a th:href="@{/admin/travels/delete(travel_id=${travel.travelId})}" class="btn btn-danger btn-link btn-sm">
                          									<i class="material-icons">
 																delete
 															</i>
