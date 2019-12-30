@@ -1,7 +1,9 @@
 package com.hcz.cpdspringproject.controllers;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,7 +108,8 @@ public class TravelController {
     }
 
     @RequestMapping(value = "/admin/travel", method = RequestMethod.POST)
-    public String adminInsertTravel(@ModelAttribute("travel") Travel travel, HttpSession session) {
+    public String adminInsertTravel(@ModelAttribute("travel") Travel travel, HttpServletRequest request) {
+        HttpSession session = request.getSession();
         User user = (User) session.getAttribute("authUser");
         travel.setUser(user.getUserId());
         int insertTravel = travelService.addNewTravel(travel);
@@ -116,7 +119,7 @@ public class TravelController {
             return "error_400";
         }
     }
-
+    
     @RequestMapping(value = "/admin/travels/delete", method = RequestMethod.GET)
     public String adminDeleteTravel(@RequestParam("travel_id") int travelId) {
         int deletedTravel = travelService.deleteTravel(travelId);

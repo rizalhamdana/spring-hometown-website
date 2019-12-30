@@ -33,7 +33,7 @@
                       							<tr>
                       								<th>Title</th>
                         							<th>Category</th>
-                        							<th>Action</th>
+                        							<th colspan="2">Action</th>
                       							</tr>  
                       						</thead>
                       						<tbody>
@@ -48,12 +48,14 @@
 																edit
 															</i>
                          								</a>
-                         								<a href="" class="btn btn-danger btn-link btn-sm">
+                         							</td>
+                         							<td>
+														 <br>
+                         								<a th:href="@{/admin/travels/delete(travel_id=${travel.travelId})}" class="btn btn-danger btn-link btn-sm">
                          									<i class="material-icons">
 																delete
 															</i>
-														</a>
-                         								
+														 </a>
                          							</td>
                         						</tr>
                       						</div>
