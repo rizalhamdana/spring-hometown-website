@@ -28,13 +28,13 @@
                 				</div>
                 				<div class="card-body">
                  					 <div class="table-responsive">
-                    					<table class="table" style="text-align: center;">
+                    					<table class="table">
                       						<thead class=" text-primary" >
                       							<tr>
-                      								<th>Title</th>
-                        							<th>Date Created</th>
-                        							<th>Category</th>
-                        							<th colspan="2">Action</th>
+                      								<th width="25%">Title</th>
+                        							<th width="25%">Date Created</th>
+                        							<th width="25%">Category</th>
+                        							<th width="25%" colspan="2" style="text-align:center;">Action</th>
                       							</tr>  
                       						</thead>
                       						<tbody>
@@ -44,7 +44,7 @@
                          							<td th:text="${news.dateCreated }"></td>
 													 <td th:text="${news.category.name }">${news.category.name }</td>
 													<td>
-														<br>
+                         							<br>
 														<a th:href="@{/admin/edit-news-form(news_id=${news.newsId})}" class="btn btn-primary btn-link btn-sm">
 															<i class="material-icons">
 																edit
@@ -52,13 +52,12 @@
 														</a>
 													</td>
                          							<td>
-														 <br>
+                         							<br>
                          								<a th:href="@{/admin/news/delete(news_id=${news.newsId})}" class="btn btn-danger btn-link btn-sm">
                          									<i class="material-icons">
 																delete
 															</i>
 														 </a>
-														 <br>
                          								<!-- <a th:href="@{}" >
                          									
 														</a> -->

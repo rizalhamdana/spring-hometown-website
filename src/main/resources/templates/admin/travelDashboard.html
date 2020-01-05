@@ -31,23 +31,27 @@
                     					<table class="table">
                       						<thead class=" text-primary">
                       							<tr>
-                      								<th>Title</th>
-                        							<th>Category</th>
-                        							<th colspan="2">Action</th>
+                      								<th width="50%" colspan="2">Title</th>
+                        							<th width="25%">Category</th>
+                        							<th width="25%" colspan="2"  style="text-align:center;">Action</th>
                       							</tr>  
                       						</thead>
                       						<tbody>
                       						<div th:each="travel : ${allTravels }">
                       							<tr>
-                         							<td><a th:href="@{/travels/details(travel_id=${travel.travelId})}" th:text="${travel.title }"></a></td>
+                         							<td colspan="2"><a th:href="@{/travels/details(travel_id=${travel.travelId})}" th:text="${travel.title }"></a></td>
                          				
                          							<td th:text="${travel.category.name }"></td>
                          							<td>
+                         							<br>
                          								<a th:href="@{/admin/edit-travel-form(travel_id=${travel.travelId})}" class="btn btn-primary btn-link btn-sm">
                          									<i class="material-icons">
 																edit
 															</i>
                          								</a>
+                         							</td>
+                         							<td>
+                         							<br>
                          								<a th:href="@{/admin/travels/delete(travel_id=${travel.travelId})}" class="btn btn-danger btn-link btn-sm">
                          									<i class="material-icons">
 																delete

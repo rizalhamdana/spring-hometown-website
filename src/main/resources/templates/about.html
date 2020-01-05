@@ -30,8 +30,6 @@
 						<p>The name Tanjung Pinang is taken from the position of beach nut tree that juts into the sea. Trees that are in the Cape which is a guide for voyagers who will go to Bintan River. The Tanjung Pinang River is the entrance to Bintan, where the Bentan empire was based in what is now the subdivision of Bukit Batu.
 						</p>
 
-
-
 						<h3>Early History</h3>
 						<p>Tanjung Pinang's history can be traced to the early 3rd century, when it flourished as a trading post on the India &#45; China trade route. Srivijaya, a Sumatra-based empire which nurtured trade with China, came to dominate much of the Malay archipelago from the 7th to 13th centuries. It declined with the rise of piracy in the region, and by the 12th century Bintan Island became known by the Chinese as "Pirate Island".</p>
 						<p>According to the Malay Annals, a Srivijaya prince named Seri Teri Buana, fleeing from the sacking of Palembang, stayed on Bintan for several years, gathering his strength before founding the Kingdom of Singapura (Singapore). A century later, it too was sacked by rival powers, and its king founded a new city at Malacca. The Malacca Sultanate (1400 &#45; 1511) became one of the great empires of the region, its territories including the Riau Archipelago. Malacca was captured by the Portuguese in 1511, and the exiled Sultan Mahmud Shah established his capital at Bintan, from which he organized attacks and blockades against the Portuguese. In 1526, after a number of attempts to suppress the Malay forces, the Portuguese razed Bintan to the ground.</p>
@@ -48,38 +46,39 @@
 						</div>
 						
 					</div>
-					<div class="col-md-3 col-md-offset-1" style="border:1px solid #c2c2c2; padding-top: -10px; margin-top: 30px; padding-bottom: 30px;">
+					<div class="col-md-3 col-md-offset-1" style="border:1px solid #c2c2c2; padding-top: -20px; margin-top: 85px; padding-bottom: 10px;">
 						<div style="background-color: #FC9DA0; margin: 0 -15px; margin-bottom: 5px; padding-top: 10px;">
 							<h4 class="text-center" style="color: #f5f5f5">Recent News</h4>
 							<hr>
 						</div>
 						<div class="container-fluid">
-								<div class="media">
+							<div th:if="${recentNews != null }">
+							<div th:each="r_news : ${recentNews }">
+							<div class="media">
 		  							<div class="media-left media-middle">
-		    							<a href="news/todo.html">
-		      								<img class="media-object" src="images/todo2.jp2" alt="" style="height: 48px;">
+		    							<a th:href="@{/news/details(news_id=${r_news.newsId})}">
+		      								<img class="media-object" src="uploads/${r_news.thumbnail }" alt="" style="height: 48px;">
 		   								</a>
 		  							</div>
 		  							<div class="media-body">
-		    							<h4 class="media-heading">Things To Do at Tanjungpinang on Ramadhan</h4>
-		    							<p>Tanjung Pinang is the capital city of the Riau Islands. It's not surprising to encounter a lot of diversity here...</p>
+		    							<a th:href="@{/news/details(news_id=${r_news.newsId})}"> 
+											<h4>
+												<p th:text="${r_news.title}"></p>
+											</h4>
+										</a>
+										<div th:if="${r_news.contents.length() >= 50}">
+											<p th:utext="${r_news.contents.substring(0,50) }">...</p>
+										</div>
+										<div th:unless="${r_news.contents.length() >= 50}">
+				                            <p th:utext="${r_news.contents.substring(0,r_news.contents.length()) }">...</p>
+				                        </div>
 		  							</div>
 								</div>
-								<div class="media">
-		  							<div class="media-left media-middle">
-		    							<a href="news/chinese.html">
-		      								<img class="media-object" src="images/chinese.jpg" alt="" style="height: 48px;">
-		   								</a>
-		  							</div>
-		  							<div class="media-body">
-		    							<h4 class="media-heading">5 Exciting Chinese New Year Experiences in and Around Riau Archipelago</h4>
-		    							<p>January has passed, fireworks have ended and all the confetti have been swept clean, and when you think all of the New Yearâ€™s ....</p>
-		  							</div>
-								</div>
+								<br>
+							</div>
+							</div>
 						</div>
-						
 					</div>
-					
 				</div>
 			</div>
 		</div>
