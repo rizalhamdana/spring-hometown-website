@@ -17,22 +17,25 @@
 	<div class="jumbotron col-md-12" style="">
 		<img src="images/treasure6.jpg" style="width: 100%; margin-top: -100px;">
 	</div>
-	<section class="col-md-12 section" id="news_events" style="margin-left: 40px;">
-		<div class="container" style="">
-			<!-- <a href="<%= Config.getBase_url()%>Travels?category=2"> -->
-			<a href="">
-			<h3 class="text-left">
-				Nature
-			</h3></a>
-			<div class="row thumbnails" style="margin-top: 10px; padding-left: 5px;">
+	
+		<div class="section" style="margin-top: 50px;">
+	<!-- <section class="section" id="news_events" style="margin-left: 40px;"> -->
+		<div class="container">
+				<h3 class="text-left" style="margin-top: 50px !important;">All Travels</h3>
+				<hr style="margin-bottom: 50px;">
+			<div class="row thumbnails" style="padding-left: 5px;">
 				<div th:each="travel : ${allTravels}">
 					<div class="col-md-3 thumbnail">
 						<!-- <img src="uploads/${travel.getThumbnail()}" class="img-responsive image-news-wonders-2"> -->
 						<!-- <a href="<%= Config.getBase_url()%>detailPost?id_travel=${travel.getTravel_id()}"> -->
+						<img src="@{uploads/} + ${travel.thumbnail}" class="img-responsive image-news-wonders-2">
 						<a th:href="@{/travels/details(travel_id=${travel.travelId})}">
 							<h4>
 								<p th:text="${travel.title}"></p>
 							</h4>
+						</a>
+						<a th:href="@{/travels/travels-category(category_id=${travel.category})}">
+							<b><p th:text="${travel.category.name }"></p></b>
 						</a>
 						<div th:if="${travel.contents.length() >= 100}">
 							<p th:utext="${travel.contents.substring(0,100) }">...</p>

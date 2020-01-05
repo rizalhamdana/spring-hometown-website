@@ -26,10 +26,12 @@
                     					<i class="material-icons">people</i>
                  					</div>
                   					<p class="card-category">Registered Users</p>
-                  					<h3 class="card-title">
-                    					<span th:text="${numUsers}"></span>
-                    					Total Users
-                  					</h3>
+                 					<a href="/admin/all-users">
+	                  					<h3 class="card-title">
+	                    					<span th:text="${numUsers}"></span>
+	                    					Total Users
+	                  					</h3>
+                  					</a>
                 				</div>
                 				<div class="card-footer">
                   					<div class="stats">
@@ -41,19 +43,21 @@
             			</div>
             			<div class="col-lg-4 col-md-6 col-sm-6">
               				<div class="card card-stats">
-                				<div class="card-header card-header-success card-header-icon">
+                				<div class="card-header card-header-danger card-header-icon">
                   					<div class="card-icon">
-                    					<i class="material-icons">card_travel</i>
+                    					<i class="material-icons">content_paste</i>
                  					</div>
-                  					<p class="card-category">Posted Destinations</p>
-                  					<h3 class="card-title">
-                    					<span th:text="${numTravels}"></span>
-                    					Total Travels
-                  					</h3>
+                  					<p class="card-category">Published News</p>
+                 					<a href="/admin/all-news">
+	                  					<h3 class="card-title">
+	                    					<span th:text="${numNews}"></span>
+	                    					Total News
+	                  					</h3>
+                  					</a>
                 				</div>
                 				<div class="card-footer">
                   					<div class="stats">
-                    					<i class="material-icons text-danger">card_travel</i>
+                    					<i class="material-icons text-danger">content_paste</i>
                     					<a href="#pablo">See More</a>
                   					</div>
                 				</div>
@@ -61,19 +65,21 @@
             			</div>
             			<div class="col-lg-4 col-md-6 col-sm-6">
               				<div class="card card-stats">
-                				<div class="card-header card-header-danger card-header-icon">
+                				<div class="card-header card-header-success card-header-icon">
                   					<div class="card-icon">
-                    					<i class="material-icons">content_paste</i>
+                    					<i class="material-icons">card_travel</i>
                  					</div>
-                  					<p class="card-category">Published News</p>
-                  					<h3 class="card-title">
-                    					<span th:text="${numNews}"></span>
-                    					Total News
-                  					</h3>
+                					<p class="card-category">Posted Destinations</p>
+                 					<a href="/admin/all-travels">
+	                  					<h3 class="card-title">
+	                    					<span th:text="${numTravels}"></span>
+	                    					Total Travels
+	                  					</h3>
+                  					</a>
                 				</div>
                 				<div class="card-footer">
                   					<div class="stats">
-                    					<i class="material-icons text-danger">content_paste</i>
+                    					<i class="material-icons text-danger">card_travel</i>
                     					<a href="#pablo">See More</a>
                   					</div>
                 				</div>
