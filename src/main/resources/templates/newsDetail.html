@@ -70,16 +70,22 @@
 							<div th:each="r_news : ${recentNews }">
 							<div class="media">
 		  							<div class="media-left media-middle">
-		  								<!-- <a href="<%= Config.getBase_url()%>detailPost?id_news=${news.getNews_id()}"> -->
-		    							<a href="">
+		    							<a th:href="@{/news/details(news_id=${r_news.newsId})}">
 		      								<img class="media-object" src="uploads/${r_news.thumbnail }" alt="" style="height: 48px;">
 		   								</a>
 		  							</div>
 		  							<div class="media-body">
-		    							<!-- <a href="<%= Config.getBase_url()%>detailPost?id_news=${news.getNews_id()}"> -->
-		    							<a href="">
-		    								<h4 class="media-heading">${r_news.title }</h4>
-		    							</a>
+		    							<a th:href="@{/news/details(news_id=${r_news.newsId})}"> 
+											<h4>
+												<p th:text="${r_news.title}"></p>
+											</h4>
+										</a>
+										<div th:if="${r_news.contents.length() >= 50}">
+											<p th:utext="${r_news.contents.substring(0,50) }">...</p>
+										</div>
+										<div th:unless="${r_news.contents.length() >= 50}">
+				                            <p th:utext="${r_news.contents.substring(0,r_news.contents.length()) }">...</p>
+				                        </div>
 		  							</div>
 								</div>
 								<br>

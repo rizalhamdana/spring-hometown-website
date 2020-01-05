@@ -19,6 +19,10 @@ public class NewsService {
         return new NewsDao().getNewsById(newsId);
     }
 
+    public List<News>getRecentNews() {
+        return new NewsDao().getRecentNews();
+    }
+    
     public List<News> getAllNews() {
         return new NewsDao().getAllNews();
     }

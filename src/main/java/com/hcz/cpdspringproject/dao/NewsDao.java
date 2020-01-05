@@ -18,6 +18,11 @@ public class NewsDao {
         final String sql = "select * from news join category on news.category = category.category_id where news_id = ? order by news.news_id desc ";
         return template.queryForObject(sql, new NewsMapper(), newsId);
     }
+    
+    public List<News> getRecentNews() {
+        String sql = "select * from news join category on news.category = category.category_id order by news.news_id desc limit 3";
+        return template.query(sql, new NewsMapper());
+    }
 
     public List<News> getAllNews() {
         String sql = "select * from news join category on news.category = category.category_id order by news.news_id desc";

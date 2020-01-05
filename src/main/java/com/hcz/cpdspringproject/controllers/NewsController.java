@@ -41,8 +41,10 @@ public class NewsController {
     @RequestMapping("/news/details")
     public String newsDetail(@RequestParam("news_id") int newsId, Model model) {
         News news = newsService.getNewsById(newsId);
+        List<News>recentNews = newsService.getRecentNews();
         if (news != null) {
             model.addAttribute("news", news);
+            model.addAttribute("recentNews", recentNews);
             return "newsDetail";
         } else {
             return "error_404";
