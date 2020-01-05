@@ -6,12 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hcz.cpdspringproject.pojo.Category;
 import com.hcz.cpdspringproject.pojo.Comment;
@@ -20,12 +22,16 @@ import com.hcz.cpdspringproject.pojo.User;
 import com.hcz.cpdspringproject.service.CategoryService;
 import com.hcz.cpdspringproject.service.CommentService;
 import com.hcz.cpdspringproject.service.TravelService;
+import com.hcz.cpdspringproject.utils.GeneralUtils;
 
 /**
  * NewsController
  */
 @Controller
 public class TravelController {
+
+    @Value("${file.path}")
+    String uploadPath;
 
     @Autowired
     private CategoryService categoryService;
@@ -102,10 +108,14 @@ public class TravelController {
 
     @RequestMapping(value = "/admin/travels/update", method = RequestMethod.POST)
     public String adminUpdateTravel(@ModelAttribute("travel") final Travel travel,
-            @RequestParam("categoryId") final int categoryId) {
+            @RequestParam("categoryId") final int categoryId, @RequestParam("file") MultipartFile file) {
 
         final Category category = categoryService.getCategoryById(categoryId);
         travel.setCategory(category);
+        String thumbnailUpload = GeneralUtils.handleFileUpload(file, uploadPath);
+        if (thumbnailUpload != null) {
+            travel.setThumbnail(thumbnailUpload);
+        }
 
         final int updateTravel = travelService.updateTravel(travel);
         if (updateTravel > 0) {
@@ -117,12 +127,14 @@ public class TravelController {
 
     @RequestMapping(value = "/admin/travel", method = RequestMethod.POST)
     public String adminInsertTravel(@ModelAttribute("travel") final Travel travel, final HttpSession session,
-            final HttpServletRequest request) {
+            final HttpServletRequest request, @RequestParam("file") MultipartFile file) {
         final int categoryId = Integer.parseInt(request.getParameter("categoryId").toString());
         final Category category = categoryService.getCategoryById(categoryId);
         final User user = (User) session.getAttribute("authUser");
+        String thumbnail = GeneralUtils.handleFileUpload(file, uploadPath);
         travel.setUser(user.getUserId());
         travel.setCategory(category);
+        travel.setThumbnail(thumbnail);
         final int insertTravel = travelService.addNewTravel(travel);
         if (insertTravel > 0) {
             return "redirect:/admin/all-travels";

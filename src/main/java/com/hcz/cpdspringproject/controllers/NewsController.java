@@ -7,20 +7,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hcz.cpdspringproject.pojo.Category;
 
 import com.hcz.cpdspringproject.pojo.News;
 import com.hcz.cpdspringproject.pojo.User;
 import com.hcz.cpdspringproject.service.NewsService;
+import com.hcz.cpdspringproject.utils.GeneralUtils;
 
 /**
  * NewsController
@@ -30,6 +33,9 @@ public class NewsController {
 
     @Autowired
     NewsService newsService;
+
+    @Value("${file.path}")
+    String uploadPath;
 
     @GetMapping("/news")
     public String getAllNews(Model model) {
@@ -76,8 +82,14 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/admin/news/update", method = RequestMethod.POST)
-    public String adminUpdateNews(@ModelAttribute("editNews") News news) {
+    public String adminUpdateNews(@ModelAttribute("editNews") News news, @RequestParam("file") MultipartFile file) {
+        String thumbnailUpload = GeneralUtils.handleFileUpload(file, uploadPath);
+        if (thumbnailUpload != null) {
+            news.setThumbnail(thumbnailUpload);
+        }
+
         int updateNews = newsService.updateNews(news);
+
         if (updateNews > 0) {
             return "redirect:/admin/all-news";
         } else {
@@ -86,9 +98,10 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/admin/news", method = RequestMethod.POST)
-    public String adminInsertNews(@ModelAttribute("news") News news, HttpServletRequest request) {
+    public String adminInsertNews(@ModelAttribute("news") News news, HttpServletRequest request,
+            @RequestParam("file") MultipartFile file) {
         System.out.println(news.getTitle());
-        String thumbnail = "default.png";
+        String thumbnail = GeneralUtils.handleFileUpload(file, uploadPath);
         news.setThumbnail(thumbnail);
         news.setCategory(new Category(1, "News"));
         news.setDateCreated(new Date());

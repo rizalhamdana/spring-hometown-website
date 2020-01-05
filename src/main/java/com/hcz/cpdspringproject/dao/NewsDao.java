@@ -32,7 +32,7 @@ public class NewsDao {
 
     public int updateNews(News news) {
         String sql = "update news set title = ?, contents = ?, thumbnail = ? where news_id = " + news.getNewsId();
-        return template.update(sql, news.getTitle(), news.getContents(), "default.png");
+        return template.update(sql, news.getTitle(), news.getContents(), news.getThumbnail());
     }
 
     public int deleteNewsById(int newsId) {

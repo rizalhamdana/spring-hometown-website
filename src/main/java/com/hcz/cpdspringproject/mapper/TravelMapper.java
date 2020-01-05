@@ -24,6 +24,7 @@ public class TravelMapper implements RowMapper<Travel> {
         category.setCategoryId(rs.getInt("category_id"));
         category.setName(rs.getString("name"));
         travel.setCategory(category);
+        travel.setThumbnail(rs.getString("thumbnail"));
         return travel;
     }
 

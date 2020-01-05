@@ -37,7 +37,7 @@
                   					<p class="card-category"></p>
                 				</div>
                					<div class="card-body">
-                					<form method="post" action="#" th:action="@{/admin/news/update}" th:object="${editNews}" >
+                					<form method="post" action="#" th:action="@{/admin/news/update}" th:object="${editNews}" enctype="multipart/form-data" >
                     					<div class="row">
                       						<div class="col-md-12">
                         						<div class="form-group">
@@ -46,24 +46,23 @@
                         						</div>
                       						</div>
                     					</div>
-                    					<!-- <div class="row" style="margin-bottom: 50px;">
+                    					<div class="row" style="margin-bottom: 50px;">
                       						<div class="col-md-4">
                         						<div class="form-group">
                         							<label th:if="${editNews != null }" class="bmd-label-floating">
                           								Change
                           							</label>	
-                          							<label th:unless="${editNews != null }" class="bmd-label-floating">
-                          								Image Thumbnail
-                          							</label>
                         						</div>
                       						</div>
-                      						<input type="file" name="file" accept="image/*">
-                    					</div> -->
+											<div class="col-md-4">
+												<input type="file" name="file" accept="image/*" />
+											</div>
+                    					</div>
                     					<div th:if="${editNews != null }">
                     						<div class="row" style="margin-bottom: 50px;">
                       							<div class="col-md-6">
                         							<div class="form-group">
-                          								<img src="uploads/${editNews.thumbnail }" alt="" class="img-responsive">	
+                          								<img th:src="@{/uploads/} + ${editNews.thumbnail }" alt="" class="img-responsive">	
                         							</div>
                       							</div>
                       						</div>
@@ -82,7 +81,7 @@
                     					</div>
                     					<p th:if="${editNews != null }">
                     						<input type="hidden" name="news_id" value="${editNews.newsId}" th:field="*{newsId}">
-                    						<input type="hidden" name="thumbnailHidden" value="${editNews.thumbnail}">
+                    						<input type="hidden" name="thumbnail" value="${editNews.thumbnail}" th:field="*{thumbnail}">
                     					</p>
                     					
                     					<button type="submit" class="btn btn-primary pull-right">Post</button> &nbsp

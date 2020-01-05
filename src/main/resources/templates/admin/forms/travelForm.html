@@ -34,7 +34,7 @@
                   					<p class="card-category"></p>
                 				</div>
                					<div class="card-body">
-                					<form method="post" action="#" th:action="@{/admin/travel/}" th:object="${travel}" >
+                					<form method="post" action="#" th:action="@{/admin/travel/}" th:object="${travel}" enctype="multipart/form-data">
                     					<div class="row">
                       						<div class="col-md-12">
                         						<div class="form-group">
@@ -43,22 +43,19 @@
                         						</div>
                       						</div>
                     					</div>
-                    					 <!-- <div class="row" style="margin-bottom: 50px;">
+                    					 <div class="row" style="margin-bottom: 50px;">
                       						<div class="col-md-2">
                         						<div class="form-group">
-                          							<label th:if="${editTravel != null }" class="bmd-label-floating">
-                          								Change All
-                          							</label>	
-                          							<label th:unless="${editTravel != null }" class="bmd-label-floating">
+                          							<label class="bmd-label-floating">
                           								Image Thumbnail
                           							</label>	
                         						</div>
                       						</div>
                       						<div class="col-md-4">
-                        						<input th:if="${editTravel == null }" type="file" name="thumbnail" accept="image/*" multiple required />
+                        						<input type="file" name="file" accept="image/*" required />
                       						</div>	
                     					</div> 
-                    					 <div th:if="${editTravel != null }">
+                    					 <!-- <div th:if="${editTravel != null }">
                     						<div class="row" style="margin-bottom: 50px;">
                     							<div th:each="thumbnail : ${thumbnails }">
                     								<div class="col-md-2">
