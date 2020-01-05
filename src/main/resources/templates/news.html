@@ -22,7 +22,7 @@
 				<hr style="margin-bottom: 50px;">
 				<div class="row row-news">
 					<div th:each="news : ${allNews}" class="col-md-3 news-thumb">
-						<img src="@{uploads/} + ${news.thumbnail}" class="img-responsive image-news-wonders-2">
+						<img th:src="@{/uploads/} + ${news.thumbnail}" class="img-responsive image-news-wonders-2">
 						<a th:href="@{/news/details(news_id=${news.newsId})}"> 
 							<h4>
 								<p th:text="${news.title}"></p>

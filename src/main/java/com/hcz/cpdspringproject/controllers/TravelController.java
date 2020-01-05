@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,6 +47,16 @@ public class TravelController {
     public String index(final Model model) {
         final List<Travel> allTravels = travelService.getAllTravels();
         model.addAttribute("allTravels", allTravels);
+        model.addAttribute("categoryName", "All Travels");
+        return "travel";
+    }
+
+    @RequestMapping("/travels/{category}")
+    public String travelGroupByCategory(@PathVariable("category") int categoryId, Model model) {
+        final List<Travel> travelGrouped = travelService.getTravelGrouped(categoryId);
+        Category category = categoryService.getCategoryById(categoryId);
+        model.addAttribute("allTravels", travelGrouped);
+        model.addAttribute("categoryName", category.getName());
         return "travel";
     }
 

@@ -2,9 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>
-		<div th:if="${news!=null }">${news.title}</div>
-	</title>
+	<title th:text="${news.title}"></title>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/travel.css}">
@@ -33,27 +31,11 @@
 						<div class="container-fluid" th:if="${news!=null }" >
 							<h1 class="text-left" style="margin-bottom: 20px;" th:text="${news.title}"></h1>
 							<br>
-							<!-- <div th:if="${news!=null }">
-								<div th:each="thumbnail : ${thumbnails }">
-									<div class="mySlides">
-										<img src="uploads/${thumbnail }" class="img-responsive slide-img" style="width: 100%";>
-									</div>
-								</div>
-								<div class="caption-container">
-    								<p id="caption"></p>
-  								</div>
-								<a onclick="change_slides(-1)" class="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-								<a onclick="change_slides(1)" class="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-								<div class="row container-fluid" style="margin-top: 5px;">
-							
-									<div th:each="thumbnail : ${thumbnails }">
-										<div class="col-md-2 column">
-											<img src="uploads/${thumbnail }" class="img-responsive slide_control" style="width: 100%"; onclick='current_slides("${counter}")' alt="Image">
-											<c:set var="counter" value="${counter+1 }" scope="page"></c:set>
-										</div>
-									</div>
-								</div>
-							</div> -->
+							<div th:if="${news != null }" >
+								<img th:src="@{/uploads/} + ${news.thumbnail }" class="img-responsive slide-img" style="margin: 0 auto;">
+							</div>
+							<br>
+							<br>
 							<br>
 							<div id="content_post" th:if="${news!=null }">
 								<div th:utext="${news.contents }"></div>
@@ -71,7 +53,7 @@
 							<div class="media">
 		  							<div class="media-left media-middle">
 		    							<a th:href="@{/news/details(news_id=${r_news.newsId})}">
-		      								<img class="media-object" src="uploads/${r_news.thumbnail }" alt="" style="height: 48px;">
+		      								<img class="media-object" th:src="@{/uploads/} + ${r_news.thumbnail }" alt="" style="height: 48px;">
 		   								</a>
 		  							</div>
 		  							<div class="media-body">

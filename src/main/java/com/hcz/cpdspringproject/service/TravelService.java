@@ -20,6 +20,10 @@ public class TravelService {
         return new TravelDao().getAllTravels();
     }
 
+    public List<Travel> getTravelGrouped(int categoryId) {
+        return new TravelDao().getTravelsGroupedByCategory(categoryId);
+    }
+
     public Travel getTravelById(int travelId) {
         Travel travel = new TravelDao().getTravelById(travelId);
         return travel;

@@ -3,9 +3,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Tanjungpinang Travel</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/home.css">
-	<link rel="stylesheet" type= "text/css" href="css/profil.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css/}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css/}">
+	<link rel="stylesheet" type= "text/css" th:href="@{/css/profil.css/}">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="overflow-x: hidden;">
@@ -24,7 +24,7 @@
 			<h2 class="text-left">Wonders & Inspires</h2>
 			<div class="row thumbnails" style="margin-top: 20px; padding-left: 5px;">
 					<div class="col-md-3 col-xs-12 col-sm-12 thumbnail">
-						<a href="/travels?category=2">
+						<a th:href="@{/travels/2}">
 							<img src="images/mangrove.jpg" style="border-radius: 10px; object-fit: cover; width: 250px; height: 300px; box-shadow: inset 0px -10px 20px #000;">
 							<div class="overlay" style="z-index: 0">
 								
@@ -34,7 +34,7 @@
 						</a>	
 					</div>
 					<div class="col-md-3 col-xs-12 col-sm-12 thumbnail">
-						<a href="/travels?category=4">
+						<a th:href="@{/travels/4}">
 							<img src="images/masjid_penyengat.jpg" style="border-radius: 10px;object-fit: cover; width: 250px; height: 300px;">
 							<div class="overlay">
 								
@@ -44,7 +44,7 @@
 						
 					</div>
 					<div class="col-md-3 col-xs-12 col-sm-12 thumbnail">
-						<a href="/travels?category=5">
+						<a th:href="@{/travels/5}">
 							<img src="images/zapin3.jpg" style="border-radius: 10px;object-fit: cover; width: 250px; height: 300px;">
 							<div class="overlay">
 								
@@ -53,7 +53,7 @@
 						</a>
 					</div>
 					<div class="col-md-3 col-xs-12 col-sm-12 thumbnail">
-						<a href="/travels?category=3">
+						<a th:href="@{/travels/3}">
 							<img src="images/tcc.jpg" style="border-radius: 10px;object-fit: cover; width: 250px; height: 300px; ">
 							<div class="overlay"></div>
 							<h4 class="text-center centered-wonders" style="color: white; text-shadow: 0px 0px 30px black; ">Shopping</h4>

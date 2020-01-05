@@ -3,9 +3,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Travel</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/home.css">
-	<link rel="stylesheet" type= "text/css" href="css/profil.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css/}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css/}">
+	<link rel="stylesheet" type= "text/css" th:href="@{/css/profil.css/}">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
@@ -15,26 +15,26 @@
 	<th:block th:include="navbar.html"></th:block>
 
 	<div class="jumbotron col-md-12" style="">
-		<img src="images/treasure6.jpg" style="width: 100%; margin-top: -100px;">
+		<img th:src="@{/images/treasure6.jpg/}" style="width: 100%; margin-top: -100px;">
 	</div>
 	
 		<div class="section" style="margin-top: 50px;">
 	<!-- <section class="section" id="news_events" style="margin-left: 40px;"> -->
 		<div class="container">
-				<h3 class="text-left" style="margin-top: 50px !important;">All Travels</h3>
+				<h3 class="text-left" style="margin-top: 50px !important;" th:text="${categoryName}"></h3>
 				<hr style="margin-bottom: 50px;">
 			<div class="row thumbnails" style="padding-left: 5px;">
 				<div th:each="travel : ${allTravels}">
 					<div class="col-md-3 thumbnail">
 						<!-- <img src="uploads/${travel.getThumbnail()}" class="img-responsive image-news-wonders-2"> -->
 						<!-- <a href="<%= Config.getBase_url()%>detailPost?id_travel=${travel.getTravel_id()}"> -->
-						<img src="@{uploads/} + ${travel.thumbnail}" class="img-responsive image-news-wonders-2">
+						<img th:src="@{/uploads/} + ${travel.thumbnail}" class="img-responsive image-news-wonders-2">
 						<a th:href="@{/travels/details(travel_id=${travel.travelId})}">
 							<h4>
 								<p th:text="${travel.title}"></p>
 							</h4>
 						</a>
-						<a th:href="@{/travels/travels-category(category_id=${travel.category})}">
+						<a th:href="@{/travels/} + ${travel.category.categoryId}">
 							<b><p th:text="${travel.category.name }"></p></b>
 						</a>
 						<div th:if="${travel.contents.length() >= 100}">

@@ -25,6 +25,12 @@ public class TravelDao {
         return template.query(sql, new TravelMapper());
     }
 
+    public List<Travel> getTravelsGroupedByCategory(int categoryId) {
+        String sql = "select * from travel join category on travel.category = category.category_id where category_id = "
+                + categoryId + " order by travel.travel_id desc";
+        return template.query(sql, new TravelMapper());
+    }
+
     public int addTravel(Travel travel) {
         String sql = "insert into travel values(null, ?, ?, ?, ?, ?, ?, ?)";
         return template.update(sql, travel.getTitle(), travel.getContents(), travel.getThumbnail(), travel.getUser(), 0,
@@ -47,4 +53,5 @@ public class TravelDao {
         String sql = "delete from travel where travel_id = ?";
         return template.update(sql, travelId);
     }
+
 }
